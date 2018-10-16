@@ -18,22 +18,55 @@
         </ul>
 		<a class="last" href="#">Acceder</a>
 	</div>
+
 	<main class="global">
-		<section class="filtros">
-			<aside class="caja filtro">
-				<ul>
-					<li><a>fecha</a></li>
-					<li><a>Filtrar grupo</a></li>
-					<li><a>Nº entrega</a></li>
-					<li><a>Puntos</a></li>
-					<li><a>Votos</a></li>
-					<li><a>filtrar grupo</a></li>
-					<li><a>Mostrar publicados</a></li>
-				</ul>
-			</aside>
-        </section>
-		<section class="listaGrupos">
-			<table width="100%" border="1" cellspacing="0">
+		<form class="filtros" id="form1" name="form1" method="post">
+		  	<label for="AnoEntrega"><b>Año:</b></label>
+          	<input type="text" value="2018" name="AnoEntrega" id="AnoEntrega">
+          	<b>Nº entrega:</b>
+	  		<select>
+				<option value="Todos"> Todos </option>
+				<option value="Uno"> 1ª entega </option>
+				<option value="Dos"> 2ª entrega</option>
+				<option value="Tres"> 3ª entrega</option>
+				<option value="Cuatro"> 4ª entrega</option>
+			</select>
+			<b>Tema medioambiental:</b>
+			<select>
+				<option value="Todos"> Todos </option>
+				<option value="Agua"> Agua </option>
+				<option value="Residuos"> Residuos</option>
+				<option value="ecológico"> ecológico</option>
+				<option value="Otros"> Otros</option>
+			</select>
+			<b>Evaluación:</b>
+			<select>
+				<option value="Todos"> Todos </option>
+				<option value="0.1"> 0.1 </option>
+				<option value="0.2"> 0.2</option>
+				<option value="0.3"> 0.3</option>
+				<option value="0.4"> 0.4</option>
+				<option value="0.5"> 0.5</option>
+			</select>
+			<b>Votos:</b>
+			<select>
+				<option value="Todos"> Todos </option>
+				<option value="10"> 10 </option>
+				<option value="8"> Más de 8</option>
+				<option value="5"> más de 5</option>
+				<option value="3"> más de 3</option>
+			</select>
+			
+			<b>Publicado:</b>
+			<select>
+				<option value="Todos"> Todos </option>
+				<option value="si"> Sí </option>
+				<option value="no"> No </option>
+			</select>
+			<input type="submit" value="Filtrar">
+	  </form>
+	<section class="listaGrupos">
+	  <table width="100%" border="1" cellspacing="0">
   				<tbody>
     				<tr>
       <th scope="col">&nbsp;Grupo</th>
@@ -120,7 +153,7 @@
 
 			
 			
-		</section>
+	  </section>
 	</main>
 
 </body>
