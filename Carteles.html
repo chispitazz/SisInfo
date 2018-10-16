@@ -4,12 +4,8 @@
 <meta charset="utf-8">
 <title>Sistemas Inforacion</title>
 <link href="css/CartelesStyle.css" rel="stylesheet" type="text/css">
-<link href="css/AccesoStyle.css" rel="stylesheet" type="text/css">
 <link href="./css/style.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -23,17 +19,18 @@
         </ul>
 		<a class="last" href="#">Acceder</a>
 	</div>
-	<div class="row">
-		<div class="col-md-8">
-			<article  class="Cartel">
-					<img src="./css/imagenes/box-image1.gif" alt="imagen noticia 1">
-					<div>
-						<h2> Noticia 1</h2>
-						<p> Esto es el texto de la noticia 1 resumido</p>
-					</div>
-			</article>
-		</div>
-		<div class="col-md-4">
+	<div class="main">
+
+		<article  class="Cartel">
+				<img src="./css/imagenes/box-image1.gif" alt="imagen noticia 1">
+				<div>
+					<h2> Noticia 1</h2>
+					<p> Esto es el texto de la noticia 1 resumido</p>
+				</div>
+		</article>
+	</div>
+	<div>
+		<article class="Cuestionario"> 
 			<h1> Cuestionario </h1>
 			<p> Aquí se formularía la pregunta <p>
 			<div class = "radio">
@@ -48,7 +45,19 @@
 					Esta sería la opción 2
 				</label>
 			</div>
-		</div>
+			<div class = "radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+					Esta sería la opción 3
+				</label>
+			</div>
+			<div class = "radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+					Esta sería la opción 4
+				</label>
+			</div>
+		</article>
 	</div>
 </body>
 </html>
