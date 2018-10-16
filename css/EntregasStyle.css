@@ -27,11 +27,7 @@
 	display: block;
 }
 
-.listaGrupos article{
-	width: 98%;
-	height: 25%;
-	margin: 1% 0;
-	padding: 0.5% 1%;
-	border: #FF0004 thin solid;
-	border-radius: 5%;
+.listaGrupos td{
+	text-align: center;
+	
 }
