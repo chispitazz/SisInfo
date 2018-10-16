@@ -34,6 +34,18 @@
 	display: block;
 }
 
+.FilaCabecera{
+	background: #389BD1
+}
+.FilaImpar{
+	background: #00FF2C;
+	
+}
+.FilaPar{
+	background: #1C8A17;
+	
+}
+
 .listaGrupos td{
 	text-align: center;
 	
