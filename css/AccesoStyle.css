@@ -1,8 +1,15 @@
 @charset "utf-8";
 
+.columnas{
+	display: flex;
+}
+.Centrado{
+	width: 28%;
+	height: 25%;
+}
 .Cabeza{
-	margin: 8% 40%;
-	width: 50%;
+	margin: 8% 0 0;
+	width: 40%;
 	text-align: center;
 	height: 250px;
 	border-radius: 15%;
@@ -22,8 +29,8 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	height: 70%;
-	border-radius: 0 0 15% 15%;
+	height: 50%;
+	/*border-radius: 0 0 15% 15%;*/
 
 
 	
@@ -48,4 +55,17 @@
 }
 .labels{
 	margin: 4% 1%;
+}
+
+
+.subi{
+	height:  25%;
+	width: 100%;
+	border-radius: 0 0 35% 35%;
+	background: #fff;
+}
+
+.subi input{
+	height: 45%;
+	width: 15%;
 }
