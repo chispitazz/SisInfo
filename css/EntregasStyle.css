@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.global{
+	display: flex;
+}
+
+.filtros{
+	width: 28%;
+	margin: 0 0.5%;
+	padding: 0 0.5%;
+	border-right-color: #F80307;
+	border-right-width: medium;
+	border-right-style: solid;
+}
+
+.caja{
+	margin: 2%;
+	width: 95%;
+	border: thin solid #4D96ED;
+	
+	
+}
+
+.listaGrupos{
+	width: 70%;
+	margin: 0% 1% ;
+	display: block;
+}
+
+.listaGrupos article{
+	width: 98%;
+	height: 25%;
+	margin: 1% 0;
+	padding: 0.5% 1%;
+}
