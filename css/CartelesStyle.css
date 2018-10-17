@@ -1,12 +1,13 @@
 .mainCarteles{
 	display: flex;
+
 }
 
 .Cuestionario {
-	padding: 0 0 0 0;
 	display: block;
 	padding: 2% 2% 2% 2%;
 	background-color: #5A81C5;
+	margin:0% 5% 0 0;
 }
 .Cuestionario p{
 	margin: 5%;
@@ -21,9 +22,19 @@
     display: inline-block;
     /*font-size: 16px*/
 }
+.Cuestionario button:hover{
+	background-color:#4F4545;
+    border: none;
+    color: white;
+    padding: 3%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	
+}
 .CuestionarioRespuesta{
-	padding:5%;
-	margin:2%
+	margin:7% 0 7% 0;
+
 }
 .InfoCartel{
 	text-align: justify;
@@ -43,11 +54,17 @@
 }
 
 .InfoCartel h2{
-	margin: 0 0 0 4%;
+	margin: 0 0 3% 0%;
+	text-align: center;
 }
 .InfoCartel h3{
 	margin: 0 0 0 4%;
 }
 .radio{
 	margin:10%;
+}
+.reto{
+	margin:5%;
+	padding:3%;
+	background-color: #D09850
 }
