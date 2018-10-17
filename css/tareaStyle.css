@@ -1,0 +1,19 @@
+.InfoTrabajo{
+	text-align: justify;
+	margin: 2% 2% 2% 5%;
+	width: 70%;
+	
+}
+
+.InfoTrabajo h1{
+	text-align: center;
+	margin: 0 0 1% 0;
+}
+
+.InfoTrabajo p{
+	margin: 0 0 2% 0;
+}
+
+.InfoTrabajo h2{
+	margin: 0 0 0 4%;
+}
