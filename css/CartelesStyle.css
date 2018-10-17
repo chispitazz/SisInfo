@@ -1,15 +1,53 @@
-
-.main{
+.mainCarteles{
 	display: flex;
-}
-.Cartel{
-	width: 70%;
-	font-size: 13px;
 }
 
 .Cuestionario {
 	padding: 0 0 0 0;
-	width: 30%;
-	display:flex;
+	display: block;
+	padding: 2% 2% 2% 2%;
+	background-color: #5A81C5;
+}
+.Cuestionario p{
+	margin: 5%;
+}
+.Cuestionario button{
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 3%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*font-size: 16px*/
+}
+.CuestionarioRespuesta{
+	padding:5%;
+	margin:2%
+}
+.InfoCartel{
+	text-align: justify;
+	margin: 2% 2% 2% 2%;
+	padding: 2% 2% 2% 2%;
+	width: 70%;
+	
 }
 
+.InfoCartel h1{
+	text-align: center;
+	margin: 0 0 1% 0;
+}
+
+.InfoCartel p{
+	margin: 0 0 2% 0;
+}
+
+.InfoCartel h2{
+	margin: 0 0 0 4%;
+}
+.InfoCartel h3{
+	margin: 0 0 0 4%;
+}
+.radio{
+	margin:10%;
+}
