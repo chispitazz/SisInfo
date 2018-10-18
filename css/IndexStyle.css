@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+.listaNoticia{
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0.3% 0px;
+	position: relative;
+	display: flex;
+}
+.Noticia{
+	padding: 10px 0 5px 10px;
+	margin: 0 0 0% 0 ;
+	width:100%;
+	border: thin solid #8B0205;
+	position:relative;
+	display: flex;
+	color:#fff;
+	background:#000;
+	height: 120px;
+}
+.Noticia img{
+	width:150px;
+	height:85px;
+}
+.Noticia div{
+	margin: 0 0 0 15px ;
+	display: block;
+}
