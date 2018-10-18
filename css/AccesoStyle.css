@@ -64,7 +64,10 @@
 	border-radius: 0 0 35% 35%;
 	background: #fff;
 }
-
+.subi p{
+	color: #DF0A0D;
+	font-size: 13px;
+}
 .subi input{
 	height: 45%;
 	width: 15%;
