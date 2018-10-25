@@ -26,8 +26,8 @@ CREATE TABLE `alumno` (
   `idalumno` int(7) NOT NULL,
   `correo` varchar(16) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
-  `Contraseña` varchar(45) NOT NULL,
-  `año_matricula` year(4) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `ano_matricula` year(4) NOT NULL,
   `Carrera` int(4) NOT NULL,
   PRIMARY KEY (`idalumno`),
   UNIQUE KEY `alumnocol_UNIQUE` (`correo`)
@@ -45,8 +45,8 @@ CREATE TABLE `anonimo` (
   `idAnonimo` int(11) NOT NULL AUTO_INCREMENT,
   `Nick` varchar(45) NOT NULL,
   `Correo` varchar(45) DEFAULT NULL,
-  `Contraseña` varchar(45) DEFAULT NULL,
-  `Ocupación` varchar(45) DEFAULT NULL,
+  `Password` varchar(45) DEFAULT NULL,
+  `Ocupacion` varchar(45) DEFAULT NULL,
   `AnoNacimiento` year(4) DEFAULT NULL,
   `Puntos` int(11) DEFAULT NULL,
   PRIMARY KEY (`idAnonimo`,`Nick`),
@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS `profesor`;
 CREATE TABLE `profesor` (
   `idProfesor` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) NOT NULL,
-  `Contraseña` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
   `Departamento` varchar(45) DEFAULT NULL,
   `SitioWeb` varchar(45) DEFAULT NULL,
   `Despacho` varchar(45) DEFAULT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE `puntua` (
   `Votos` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_profesor`,`ID_cartel`),
   KEY `puntaA_idx` (`ID_cartel`),
-  CONSTRAINT `cartel_puntoado_por` FOREIGN KEY (`ID_profesor`) REFERENCES `profesor` (`idprofesor`),
+  CONSTRAINT `cartel_puntoado_por` FOREIGN KEY (`ID_profesor`) REFERENCES `profesor` (`idProfesor`),
   CONSTRAINT `puntaA` FOREIGN KEY (`ID_cartel`) REFERENCES `carteles` (`idcarteles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -234,7 +234,7 @@ CREATE TABLE `responde` (
   PRIMARY KEY (`ID_anonimo`,`ID_Pregunta`),
   KEY `contestoA_idx` (`ID_Pregunta`),
   CONSTRAINT `contestoA` FOREIGN KEY (`ID_Pregunta`) REFERENCES `preguntas` (`id_cartel`),
-  CONSTRAINT `responde` FOREIGN KEY (`ID_anonimo`) REFERENCES `anonimo` (`idanonimo`)
+  CONSTRAINT `responde` FOREIGN KEY (`ID_anonimo`) REFERENCES `anonimo` (`idAnonimo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -309,4 +309,4 @@ CREATE TABLE `subtemas` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-25 21:23:17
+-- Dump completed on 2018-10-25 21:48:03
