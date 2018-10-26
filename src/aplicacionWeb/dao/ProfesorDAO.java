@@ -14,18 +14,6 @@ import aplicacionWeb.vo.Profesor;
 public class ProfesorDAO {
 	Connection con=null;
 	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
 	
 	public void insertarProfesor(Profesor profesor) {
         try {
@@ -66,18 +54,5 @@ public class ProfesorDAO {
 	            System.out.println(profesores);
 	            return profesores;
 	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
 	
 }

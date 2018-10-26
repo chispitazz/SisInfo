@@ -24,7 +24,7 @@ public class AnonimoDAO {
 	public void insertarAnonimo(Anonimo Anonimo) {
         try {
         	//Cambiar insert por el de la tabla correcto
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Anonimo VALUES (NULL , ?)");
             //
             preparedStatement.setString(1,  Integer.toString(Anonimo.getIdAnonimo()));
             preparedStatement.executeUpdate();
