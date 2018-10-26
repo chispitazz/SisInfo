@@ -25,7 +25,7 @@ public class CartelResumen {
 	}
 	
 	//Obtener grupo
-	int getGrupo () {
+	public int getGrupo () {
 		return this.grupo;
 	}
 	

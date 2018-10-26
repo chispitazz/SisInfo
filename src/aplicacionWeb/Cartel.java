@@ -24,6 +24,10 @@ public class Cartel {
 		this.pregunta = new Pregunta(q,answer,op1,op2,op3,op4);
 	}
 	
+	void setPregunta(Pregunta p) {
+		this.pregunta=p;
+	}
+	
 	//Obtener título
 	String getTitulo() {
 		return this.titulo;
