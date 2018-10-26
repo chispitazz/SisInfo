@@ -1,15 +1,11 @@
-package aplicacionWeb;
+package aplicacionWeb.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.LinkedList;
+import aplicacionWeb.vo.Anonimo;
+import java.sql.*;
 
-public class PreguntaDAO {
+public class AnonimoDAO {
 	Connection con=null;
 	
 	public Connection getConnection() {
@@ -25,12 +21,12 @@ public class PreguntaDAO {
 		return con;
 	}
 	
-	public void insertarPregunta(Pregunta pregunta) {
+	public void insertarAnonimo(Anonimo Anonimo) {
         try {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
-            preparedStatement.setString(1,  pregunta.getNombre());
+            preparedStatement.setString(1,  Integer.toString(Anonimo.getIdAnonimo()));
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -38,20 +34,22 @@ public class PreguntaDAO {
         }
 	}
 	
-	 public List<Pregunta> select() {
-	        List<Pregunta> preguntas = new LinkedList<Pregunta>();
+	 public List<Anonimo> select() {
+	        List<Anonimo> Anonimos = new LinkedList<Anonimo>();
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
 	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
 	                 
-	                Pregunta pregunta = null;
+	                Anonimo Anonimo = null;
 	                while(resultSet.next()){
-	                	//(String nombre, String correo, String carrera, String grupo,Integer anyoMatricula)
-	                    pregunta = new Pregunta(resultSet.getString("nombre"),resultSet.getString("correo"),
-	                    		resultSet.getString("carrera"),resultSet.getString("grupo"),
-	                    		Integer.parseInt(resultSet.getString("anyoMatricula")));
-	                    preguntas.add(pregunta);   
+	                	//(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos)
+	                    Anonimo = new Anonimo(Integer.parseInt(resultSet.getString("idAnonimo")),                   		
+	                    		Integer.parseInt(resultSet.getString("anyoNacimiento")),resultSet.getString("correo"),
+	                    		resultSet.getString("nick"),resultSet.getString("ocupacion"),
+	                    		Integer.parseInt(resultSet.getString("puntos"))
+	                    		);
+	                    Anonimos.add(Anonimo);   
 
 	                }
 	                resultSet.close();
@@ -60,8 +58,8 @@ public class PreguntaDAO {
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
-	            System.out.println(preguntas);
-	            return preguntas;
+	            System.out.println(Anonimos);
+	            return Anonimos;
 	    }
 	
 	
@@ -76,5 +74,6 @@ public class PreguntaDAO {
                 //no hacer nada
             }
     }
+	
 	
 }

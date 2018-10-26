@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 public class Noticia {
 
 	String titulo;

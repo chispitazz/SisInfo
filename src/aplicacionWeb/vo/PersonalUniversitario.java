@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 public class PersonalUniversitario {
 	private String Nombre;

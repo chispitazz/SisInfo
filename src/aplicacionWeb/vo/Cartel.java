@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 public class Cartel {
 	private String titulo;
@@ -7,11 +7,11 @@ public class Cartel {
 	private Pregunta pregunta;
 	
 	//Constructor cartel vacío
-	Cartel() {
+	public Cartel() {
 	}
 	
 	//Constructor cartel sin pregunta
-	Cartel(String title, String txt, String rt) {
+	public Cartel(String title, String txt, String rt) {
 		this.titulo = title;
 		this.texto = txt;
 		this.reto = rt;
@@ -19,32 +19,32 @@ public class Cartel {
 	}
 	
 	//Poner pregunta
-	void setPregunta(String q, String answer, String op1, String op2, String op3,
+	public void setPregunta(String q, String answer, String op1, String op2, String op3,
 			String op4) {
 		this.pregunta = new Pregunta(q,answer,op1,op2,op3,op4);
 	}
 	
-	void setPregunta(Pregunta p) {
+	public void setPregunta(Pregunta p) {
 		this.pregunta=p;
 	}
 	
 	//Obtener título
-	String getTitulo() {
+	public String getTitulo() {
 		return this.titulo;
 	}
 	
 	//Obtener texto
-	String getTexto() {
+	public String getTexto() {
 		return this.texto;
 	}
 	
 	//Obtener reto
-	String getReto() {
+	public String getReto() {
 		return this.reto;
 	}
 	
 	//Obtener pregunta
-	Pregunta getPregunta() {
+	public Pregunta getPregunta() {
 		return this.pregunta;
 	}
 	
