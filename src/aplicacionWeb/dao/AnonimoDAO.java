@@ -5,26 +5,13 @@ import java.util.LinkedList;
 import aplicacionWeb.vo.Anonimo;
 import java.sql.*;
 
-public class AnonimoDAO {
+public class AnonimoDAO extends DAO{
 	Connection con=null;
-	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
 	
 	public void insertarAnonimo(Anonimo Anonimo) {
         try {
         	//Cambiar insert por el de la tabla correcto
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Anonimo VALUES (NULL , ?)");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Anonimo VALUES (?,?,?,? , ?)");
             //
             preparedStatement.setString(1,  Integer.toString(Anonimo.getIdAnonimo()));
             preparedStatement.executeUpdate();
@@ -39,7 +26,7 @@ public class AnonimoDAO {
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
-	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
+	                ResultSet resultSet = statement.executeQuery("SELECT * FROM Anonimo"); 
 	                 
 	                Anonimo Anonimo = null;
 	                while(resultSet.next()){
@@ -61,19 +48,5 @@ public class AnonimoDAO {
 	            System.out.println(Anonimos);
 	            return Anonimos;
 	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
-	
-	
+		
 }

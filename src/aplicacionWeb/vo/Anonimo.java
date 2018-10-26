@@ -6,17 +6,18 @@ public class Anonimo {
 	String correo;
 	String nick;
 	String ocupacion;
+	String pass;
 	int puntos;
 
 	
 	public Anonimo(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos) {
-		super();
 		this.idAnonimo = idAnonimo;
 		this.anyoNacimiento = anyoNacimiento;
 		this.correo = correo;
 		this.nick = nick;
 		this.ocupacion = ocupacion;
 		this.puntos = puntos;
+		this.pass;
 	}
 	
 	public int getIdAnonimo() {
@@ -65,6 +66,10 @@ public class Anonimo {
 
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
+	}
+	
+	public String getPass() {
+		return this.getPass();
 	}
 
 	public void contestarPregunta(Pregunta p){
