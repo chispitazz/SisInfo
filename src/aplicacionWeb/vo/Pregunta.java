@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class Pregunta {
 		
 	}
 	//Constructor pregunta
-	Pregunta(String q, String answer, String op1, String op2, String op3, String op4) {
+	public Pregunta(String q, String answer, String op1, String op2, String op3, String op4) {
 		this.question = q;
 		//PENDIENTE: saber si solo son 4 opciones o más
 		this.opciones = new ArrayList<String>();
@@ -30,7 +30,7 @@ public class Pregunta {
 	}
 	
 	//Obtener pregunta
-	String getQuestion() {
+	public String getQuestion() {
 		return this.question;
 	}
 	

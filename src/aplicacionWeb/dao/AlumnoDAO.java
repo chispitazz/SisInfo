@@ -1,8 +1,8 @@
-package aplicacionWeb;
+package aplicacionWeb.dao;
 
 import java.util.List;
 import java.util.LinkedList;
-import aplicacionWeb.Alumno;
+import aplicacionWeb.vo.Alumno;
 
 import java.sql.*;
 
@@ -28,7 +28,7 @@ public class AlumnoDAO {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
-            preparedStatement.setString(1,  alumno.getNombre());
+            preparedStatement.setString(1, Integer.toString(alumno.getIdAlumno()));
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -48,7 +48,8 @@ public class AlumnoDAO {
 	                	//(String nombre, String correo, String carrera, String grupo,Integer anyoMatricula)
 	                    alumno = new Alumno(resultSet.getString("nombre"),resultSet.getString("correo"),
 	                    		resultSet.getString("carrera"),resultSet.getString("grupo"),
-	                    		Integer.parseInt(resultSet.getString("anyoMatricula")));
+	                    		Integer.parseInt(resultSet.getString("anyoMatricula")),
+	                    		Integer.parseInt(resultSet.getString("idAlumno")));
 	                    alumnos.add(alumno);   
 
 	                }

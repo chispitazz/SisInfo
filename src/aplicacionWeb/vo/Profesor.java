@@ -1,10 +1,12 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 public class Profesor extends PersonalUniversitario {
 	private String departamento;
 	private String despacho;	//no se que tipo de dato es, la verdad
 	private String sitioWeb;
 	boolean administrador;	//true:administrador, false:no administrador
+	
+	
 	public Profesor(String nombre, String correo,String departamento, String despacho, 
 			String sitioWeb,boolean administrador) {
 		super(nombre,correo);

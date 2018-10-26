@@ -1,17 +1,27 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 public class Alumno extends PersonalUniversitario{
 	private String carrera;
 	private String grupo;
 	private Integer anyoMatricula;
+	private Integer idAlumno;
 	
 	
 	public Alumno(String nombre, String correo, String carrera, String grupo,
-			Integer anyoMatricula) {
+			Integer anyoMatricula, Integer idAlumno ) {
 		super(nombre, correo);
 		this.carrera = carrera;
 		this.grupo = grupo;
 		this.anyoMatricula = anyoMatricula;
+		this.idAlumno=idAlumno;
+	}
+	
+	
+	public Integer getIdAlumno() {
+		return idAlumno;
+	}
+	public void setIdAlumno(Integer idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 	/*
 	 * Getters and setters

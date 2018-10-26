@@ -1,31 +1,71 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 public class CartelResumen {
-	private int grupo;
+	private Integer grupo;
 	private int bloqueEntrega;
 	private int votos;
 	private String titulo;
 	private String tema;
 	private boolean evaluado;
 	private boolean publicado;
+	private Integer idCartel;
 	
 	//Constructor vacío
 	CartelResumen () {	
 	}
 	
 	//Constructor para cartel nuevo
-	CartelResumen(int group, int bloque, String theme, String title) {
+	public CartelResumen(int group, int bloque, String theme, String title, Integer idCartel) {
 		this.grupo = group;
 		this.bloqueEntrega = bloque;
 		this.votos = 0;
 		this.tema = theme;
 		this.titulo = title;
 		this.evaluado = false;
-		this.publicado = false;		
+		this.publicado = false;	
+		this.idCartel=idCartel;
 	}
 	
+
+
+	public int getBloqueEntrega() {
+		return bloqueEntrega;
+	}
+
+	public void setBloqueEntrega(int bloqueEntrega) {
+		this.bloqueEntrega = bloqueEntrega;
+	}
+
+	public Integer getIdCartel() {
+		return idCartel;
+	}
+
+	public void setIdCartel(int idCartel) {
+		this.idCartel = idCartel;
+	}
+
+	public void setGrupo(Integer grupo) {
+		this.grupo = grupo;
+	}
+
+	public void setVotos(int votos) {
+		this.votos = votos;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+	public void setEvaluado(boolean evaluado) {
+		this.evaluado = evaluado;
+	}
+
+	public void setPublicado(boolean publicado) {
+		this.publicado = publicado;
+	}
+
 	//Obtener grupo
-	public int getGrupo () {
+	public Integer getGrupo() {
 		return this.grupo;
 	}
 	

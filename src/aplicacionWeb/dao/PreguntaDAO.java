@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CartelResumenDAO {
+import aplicacionWeb.vo.Pregunta;
+
+public class PreguntaDAO {
 	Connection con=null;
 	
 	public Connection getConnection() {
@@ -25,12 +27,12 @@ public class CartelResumenDAO {
 		return con;
 	}
 	
-	public void insertarCartelResumen(CartelResumen cartelR) {
+	public void insertarPregunta(Pregunta pregunta) {
         try {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
-            preparedStatement.setString(1,  Integer.toString(CartelResumen.getGrupo()));
+            preparedStatement.setString(1,  pregunta.getQuestion());//clave??
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -38,20 +40,20 @@ public class CartelResumenDAO {
         }
 	}
 	
-	 public List<CartelResumen> select() {
-	        List<CartelResumen> cartelesR = new LinkedList<CartelResumen>();
+	 public List<Pregunta> select() {
+	        List<Pregunta> preguntas = new LinkedList<Pregunta>();
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
 	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
 	                 
-	                CartelResumen cartelR = null;
+	                Pregunta pregunta = null;
 	                while(resultSet.next()){
-	                	//(int group, int bloque, String theme, String title)
-	                    cartelR = new CartelResumen(Integer.parseInt(resultSet.getString("grupo")),
-	                    		Integer.parseInt(resultSet.getString("bloque")),
-	                    		resultSet.getString("tema"),resultSet.getString("titulo"));
-	                    cartelesR.add(cartelR);   
+	                	//(String q, String answer, String op1, String op2, String op3, String op4)
+	                    pregunta = new Pregunta(resultSet.getString("question"),resultSet.getString("respuesta"),
+	                    		resultSet.getString("op1"),resultSet.getString("op2"),
+	                    		resultSet.getString("op3"),resultSet.getString("op4"));
+	                    preguntas.add(pregunta);   
 
 	                }
 	                resultSet.close();
@@ -60,8 +62,8 @@ public class CartelResumenDAO {
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
-	            System.out.println(cartelesR);
-	            return cartelesR;
+	            System.out.println(preguntas);
+	            return preguntas;
 	    }
 	
 	
@@ -76,6 +78,5 @@ public class CartelResumenDAO {
                 //no hacer nada
             }
     }
-	
 	
 }

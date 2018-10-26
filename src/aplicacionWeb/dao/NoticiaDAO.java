@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import aplicacionWeb.vo.Noticia;
 
-public class CartelDAO {
+public class NoticiaDAO {
 	Connection con=null;
 	
 	public Connection getConnection() {
@@ -25,12 +26,12 @@ public class CartelDAO {
 		return con;
 	}
 	
-	public void insertarCartel(Cartel cartel) {
+	public void insertarNoticia(Noticia noticia) {
         try {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
-            preparedStatement.setString(1,  cartel.getTitulo());	//no se cual es la clave
+            preparedStatement.setString(1,  noticia.titulo());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -38,23 +39,18 @@ public class CartelDAO {
         }
 	}
 	
-	 public List<Cartel> select() {
-	        List<Cartel> carteles = new LinkedList<Cartel>();
+	 public List<Noticia> select() {
+	        List<Noticia> noticias = new LinkedList<Noticia>();
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
 	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
 	                 
-	                Cartel cartel = null;
-	                Pregunta pregunta=null;
+	                Noticia noticia = null;
 	                while(resultSet.next()){
-	                	//(String title, String txt, String rt)
-	                    cartel = new Cartel(resultSet.getString("titulo"),resultSet.getString("texto"),
-	                    		resultSet.getString("reto"));
-	                    pregunta=null;//seleccionear pregunta del cartel de la BD
-	                    cartel.setPregunta(pregunta);
-                  	                    
-	                    carteles.add(cartel);   
+	                	//(String titulo, String noticia)
+	                    noticia = new Noticia(resultSet.getString("titulo"),resultSet.getString("noticia"));
+	                    noticias.add(noticia);   
 
 	                }
 	                resultSet.close();
@@ -63,8 +59,8 @@ public class CartelDAO {
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
-	            System.out.println(carteles);
-	            return carteles;
+	            System.out.println(noticias);
+	            return noticias;
 	    }
 	
 	
@@ -79,6 +75,5 @@ public class CartelDAO {
                 //no hacer nada
             }
     }
-	
 	
 }
