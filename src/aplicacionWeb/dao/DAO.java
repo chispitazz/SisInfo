@@ -1,30 +1,29 @@
 package aplicacionWeb.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DAO{
 	
 	Connection con=null;
-	String SGBD = "jdbc:mysql://localhost:3306/retosecologicos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	String user = "root";
-	String pass = "lsc##849##SM";
+	String SGBD = "jdbc:mysql://localhost:3306/retosecologicos";
+	String user = "?user=root&password=lsc##849##SM";
+	String pass = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	public DAO() {
 		try {
-		Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection(SGBD,user,pass); //no se como es
-		}catch(ClassNotFoundException e) {
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		
+		}catch (InstantiationException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println(e.toString());
-		}catch(SQLException e) {
-			System.out.println(e.toString());
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+	
 
 	public boolean conectado() throws SQLException {
 		if(con != null) return false;
@@ -35,12 +34,12 @@ public class DAO{
 	
 	public boolean conectarDAO() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-			return true;
-		}catch(ClassNotFoundException e) {
-			return false;
+			if(con==null) {
+				con=DriverManager.getConnection(SGBD+user+pass);
+				return true;
+			}else {
+				return false;
+			}
 		}catch(SQLException e) {
 			return false;
 		}
