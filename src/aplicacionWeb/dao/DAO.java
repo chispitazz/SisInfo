@@ -10,28 +10,26 @@ import java.sql.Statement;
 public class DAO{
 	
 	Connection con=null;
-	
+	String SGBD = "jdbc:mysql://localhost:3306/retosecologicos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	String user = "root";
+	String pass = "lsc##849##SM";
 	public DAO() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
+				con=DriverManager.getConnection(SGBD,user,pass); //no se como es
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
+			System.out.println(e.toString());
 		}catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 	}
 
-	public boolean conectado() {
+	public boolean conectado() throws SQLException {
 		if(con != null) return false;
-		else
-			try {
-				return !con.isClosed();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
+		else return !con.isClosed();
+			 
 	}
 	
 	

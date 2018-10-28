@@ -1,7 +1,6 @@
 package aplicacionWeb.vo;
 
 import java.util.*;
-import aplicacionWeb.dao.*;
 
 public class ListaNoticias{
 	private List<Noticia> noticias;

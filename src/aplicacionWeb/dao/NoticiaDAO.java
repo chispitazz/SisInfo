@@ -11,7 +11,12 @@ import java.util.List;
 import aplicacionWeb.vo.Noticia;
 
 public class NoticiaDAO extends DAO{
-	int noticiasMostradas = 100; 
+	
+	private int noticiasHaMostradar = 100;
+	
+	public NoticiaDAO() {
+		super();
+	}
 	public void insertarNoticia(Noticia noticia) throws SQLException {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
