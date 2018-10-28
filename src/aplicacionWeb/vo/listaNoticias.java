@@ -1,29 +1,34 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 import java.util.*;
-
+import aplicacionWeb.dao.*;
 
 public class ListaNoticias{
 	private List<Noticia> noticias;
 	
 	//Constructor vacío
-	noticias() {
+	public ListaNoticias() {
 		this.noticias = new ArrayList<Noticia>();
 	}
-	
+	public ListaNoticias(List<Noticia> l) {
+		this.noticias = l;
+	}	
 	//Anyadir Noticia
-	void anyadirNoticia(Noticia p) {
+	public void anyadirNoticia(Noticia p) {
 		this.noticias.add(p);
 	}
 	
 	//Eliminar Noticia
-	void quitarNoticia(Noticia p) {
+	public void quitarNoticia(Noticia p) {
 		this.noticias.remove(p);
 	}
 	
 	//Obtener noticias
-	List<Noticia> getnoticias(){
+	public List<Noticia> getnoticias(){
 		return this.noticias;
 	}
 	
+	public int length() {
+		return this.noticias.size();
+	}
 }

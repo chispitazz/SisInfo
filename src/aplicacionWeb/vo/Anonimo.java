@@ -10,14 +10,14 @@ public class Anonimo {
 	int puntos;
 
 	
-	public Anonimo(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos) {
+	public Anonimo(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos, String passw) {
 		this.idAnonimo = idAnonimo;
 		this.anyoNacimiento = anyoNacimiento;
 		this.correo = correo;
 		this.nick = nick;
 		this.ocupacion = ocupacion;
 		this.puntos = puntos;
-		this.pass;
+		this.pass = passw;
 	}
 	
 	public int getIdAnonimo() {

@@ -10,70 +10,38 @@ import java.util.LinkedList;
 import java.util.List;
 import aplicacionWeb.vo.Noticia;
 
-public class NoticiaDAO {
-	Connection con=null;
-	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
-	
-	public void insertarNoticia(Noticia noticia) {
-        try {
+public class NoticiaDAO extends DAO{
+	int noticiasMostradas = 100; 
+	public void insertarNoticia(Noticia noticia) throws SQLException {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
             preparedStatement.setString(1,  noticia.titulo());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 	}
-	
-	 public List<Noticia> select() {
+	 public List<Noticia> getListaNoticias() {
 	        List<Noticia> noticias = new LinkedList<Noticia>();
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
-	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
-	                 
-	                Noticia noticia = null;
+	                ResultSet resultSet = null;
+	               resultSet = statement.executeQuery("SELECT * FROM noticias LIMIT 100");
+	               
+	 
+	               
 	                while(resultSet.next()){
 	                	//(String titulo, String noticia)
-	                    noticia = new Noticia(resultSet.getString("titulo"),resultSet.getString("noticia"));
+	                	Noticia noticia  = new Noticia(resultSet.getString("titulo"),resultSet.getString("noticia"));
 	                    noticias.add(noticia);   
 
 	                }
 	                resultSet.close();
 	                statement.close();
-	                 
-	            } catch (SQLException e) {
+	         	}catch (SQLException e) {
 	                e.printStackTrace();
-	            }
-	            System.out.println(noticias);
-	            return noticias;
+	         	}
+			return noticias;
 	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
 	
 }

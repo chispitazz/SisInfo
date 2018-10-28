@@ -13,19 +13,6 @@ import aplicacionWeb.vo.CartelResumen;
 public class CartelResumenDAO {
 	Connection con=null;
 	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
-	
 	public void insertarCartelResumen(CartelResumen cartelR) {
         try {
         	//Cambiar insert por el de la tabla correcto
@@ -65,19 +52,5 @@ public class CartelResumenDAO {
 	            System.out.println(cartelesR);
 	            return cartelesR;
 	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
-	
 	
 }

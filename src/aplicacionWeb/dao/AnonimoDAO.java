@@ -34,7 +34,7 @@ public class AnonimoDAO extends DAO{
 	                    Anonimo = new Anonimo(Integer.parseInt(resultSet.getString("idAnonimo")),                   		
 	                    		Integer.parseInt(resultSet.getString("anyoNacimiento")),resultSet.getString("correo"),
 	                    		resultSet.getString("nick"),resultSet.getString("ocupacion"),
-	                    		Integer.parseInt(resultSet.getString("puntos"))
+	                    		Integer.parseInt(resultSet.getString("puntos")), resultSet.getString("password")
 	                    		);
 	                    Anonimos.add(Anonimo);   
 

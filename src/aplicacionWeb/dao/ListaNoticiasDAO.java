@@ -4,11 +4,11 @@ import java.util.*;
 
 import aplicacionWeb.vo.Pregunta;
 
-public class ListaNoticias extends DAO{
+public class ListaNoticiasDAO extends DAO{
 	private List<Pregunta> noticias;
-	
+	//TODO: ESTO NO ES EL DAO DEL QUIZ!!!!!!!!!
 	//Constructor vacío
-	ListaNoticias() {
+	ListaNoticiasDAO() {
 		this.noticias = new ArrayList<Pregunta>();
 	}
 	

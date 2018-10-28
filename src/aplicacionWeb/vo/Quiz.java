@@ -1,4 +1,4 @@
-package aplicacionWeb;
+package aplicacionWeb.vo;
 
 import java.util.*;
 
