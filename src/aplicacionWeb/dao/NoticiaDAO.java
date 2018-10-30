@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+
+import aplicacionWeb.vo.ListaNoticias;
 import aplicacionWeb.vo.Noticia;
 
 public class NoticiaDAO extends DAO{
@@ -15,6 +17,12 @@ public class NoticiaDAO extends DAO{
 	public NoticiaDAO() {
 		super();
 	}
+
+	/**
+	 * 
+	 * @param noticia
+	 * @throws SQLException
+	 */
 	public void insertarNoticia(Noticia noticia) throws SQLException {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
@@ -23,7 +31,13 @@ public class NoticiaDAO extends DAO{
             preparedStatement.executeUpdate();
             preparedStatement.close();
 	}
-	 public List<Noticia> getListaNoticias() {
+	
+	
+	/**
+	 * 
+	 * @return 
+	 */
+	public ListaNoticias getListaNoticias() {
 	        List<Noticia> noticias = new LinkedList<Noticia>();
 	         try {
 	                Statement statement = mysql.crearSentencia();
@@ -44,7 +58,7 @@ public class NoticiaDAO extends DAO{
 	         	}catch (SQLException e) {
 	                e.printStackTrace();
 	         	}
-			return noticias;
+			return new ListaNoticias(noticias);
 	    }
 	
 }
