@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1"  
     import="aplicacionWeb.dao.NoticiaDAO" 
     import = "aplicacionWeb.vo.Noticia" 
-    import="aplicacionWeb.vo.ListaNoticias" 
+    import="aplicacionWeb.vo.ListaNoticias"
+    import="aplicacionWeb.vista.menuWeb" 
     import="java.sql.SQLException" %>
 
 <!DOCTYPE html>
@@ -18,7 +19,9 @@
 <%! 
 	//Declaración de variables globales
 	ListaNoticias ultimasNoticias = null;
+	menuWeb mW = new menuWeb();
 %>
+<%=mW.generarVista() %>
 <%
 	
 	try{
@@ -31,8 +34,9 @@
 		if(i>=20){
 			System.out.println("Error al conectar");
 			
+			
 		}
-	//	 ultimasNoticias = new ListaNoticias(nDAO.getListaNoticias());
+		 ultimasNoticias = new ListaNoticias(nDAO.getListaNoticias());
 	}catch(SQLException e){
 		System.out.println ("ERROR AL CARGAR NOTICIAS\n" + e);
 	}
@@ -42,6 +46,9 @@
 				out.println("<article  class=\"Noticia\"><img src=\"./css/imagenes/box-image1.gif\" alt=\"imagen noticia 1\">" 
 			+ "<div> <h2> Noticia 1</h2><p> Esto es el texto de la noticia 1 resumido</p>"
 			+ "</div></article>");
+				System.out.println("<article  class=\"Noticia\"><img src=\"./css/imagenes/box-image1.gif\" alt=\"imagen noticia 1\">" 
+						+ "<div> <h2> Noticia 1</h2><p> Esto es el texto de la noticia 1 resumido</p>"
+						+ "</div></article>");
 		}
 	}
 %>
