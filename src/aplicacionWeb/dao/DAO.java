@@ -17,7 +17,7 @@ public class DAO{
 			prop = new Properties();
 			mysql = new JDBCTemplate(new MySQLConfiguration("localhost",
 					"3306","retosecologicos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"),
-					"root","lsc##849##SM");
+					"root","123456");
 			mysql.connect();
 			System.out.println("Conectado a " + mysql);
 		
