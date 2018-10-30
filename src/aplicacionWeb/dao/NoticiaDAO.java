@@ -17,7 +17,7 @@ public class NoticiaDAO extends DAO{
 	}
 	public void insertarNoticia(Noticia noticia) throws SQLException {
         	//Cambiar insert por el de la tabla correcto
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
+            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
             preparedStatement.setString(1,  noticia.titulo());
             preparedStatement.executeUpdate();
@@ -26,7 +26,7 @@ public class NoticiaDAO extends DAO{
 	 public List<Noticia> getListaNoticias() {
 	        List<Noticia> noticias = new LinkedList<Noticia>();
 	         try {
-	                Statement statement = con.createStatement();
+	                Statement statement = mysql.crearSentencia();
 	                //Introducir select correcto
 	                ResultSet resultSet = null;
 	               resultSet = statement.executeQuery("SELECT * FROM noticias LIMIT 100");

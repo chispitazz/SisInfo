@@ -1,17 +1,25 @@
 package aplicacionWeb.dao;
 
-import java.sql.*;
-import com.*;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import jdbc.JDBCTemplate;
+import jdbc.MySQLConfiguration;
+
+
 
 public class DAO{
 	
-	Connection con=null;
-	String SGBD = "jdbc:mysql://localhost:3306/retosecologicos";
-	String user = "?user=root&password=lsc##849##SM";
-	String pass = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	JDBCTemplate mysql = null;
+	Properties prop = null;
 	public DAO() {
 		try {
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
+			prop = new Properties();
+			mysql = new JDBCTemplate(new MySQLConfiguration("localhost",
+					"3306","retosecologicos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"),
+					"root","lsc##849##SM");
+			mysql.connect();
+			System.out.println("Conectado a " + mysql);
 		
 		}catch (InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -22,34 +30,36 @@ public class DAO{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
 
 	public boolean conectado() throws SQLException {
-		if(con != null) return false;
-		else return !con.isClosed();
-			 
+		return mysql != null && mysql.conectado();		 
 	}
 	
 	
 	public boolean conectarDAO() {
 		try {
-			if(con==null) {
-				con=DriverManager.getConnection(SGBD+user+pass);
+			if(mysql==null) {
+				mysql.connect();
 				return true;
 			}else {
 				return false;
 			}
 		}catch(SQLException e) {
+			System.out.println("Error: " + e.getMessage());
 			return false;
 		}
 	}
 	
 	public boolean desconectarDAO() {
 	    try {
-	    	if (con != null) {
-	    		con.close();
+	    	if (mysql != null) {
+	    		mysql.disconnect();
 	    	}
 	    	return true;
 	    } catch (Exception e) { 

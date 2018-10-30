@@ -1,9 +1,9 @@
-<%@page import="aplicacionWeb.vo.Noticia"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="aplicacionWeb.dao.NoticiaDAO"%>
-<%@page import="aplicacionWeb.vo.ListaNoticias"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="aplicacionWeb.*" %>
+    pageEncoding="ISO-8859-1"  
+    import="aplicacionWeb.dao.NoticiaDAO" 
+    import = "aplicacionWeb.vo.Noticia" 
+    import="aplicacionWeb.vo.ListaNoticias" 
+    import="java.sql.SQLException" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,17 +15,14 @@
 </head>
 </head>
 <body>
-dependencies {
-    compile 'mysql:mysql-connector-java:6.0.+'
-}
 <%! 
 	//Declaración de variables globales
 	ListaNoticias ultimasNoticias = null;
-	NoticiaDAO nDAO = new NoticiaDAO();
 %>
 <%
 	
 	try{
+		NoticiaDAO nDAO = new NoticiaDAO();
 		int i = 0;
 		while(!nDAO.conectado() && i <20){
 			nDAO.conectarDAO();
@@ -39,8 +36,6 @@ dependencies {
 	}catch(SQLException e){
 		System.out.println ("ERROR AL CARGAR NOTICIAS\n" + e);
 	}
-	%>
-	<%-- 
 	if(ultimasNoticias != null){
 		int i = 0;
 		for(Noticia n : ultimasNoticias.getnoticias()){
@@ -48,7 +43,7 @@ dependencies {
 			+ "<div> <h2> Noticia 1</h2><p> Esto es el texto de la noticia 1 resumido</p>"
 			+ "</div></article>");
 		}
-	}*/
---%>
+	}
+%>
 </body>
 </html>

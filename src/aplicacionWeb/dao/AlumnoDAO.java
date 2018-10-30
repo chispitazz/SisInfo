@@ -26,6 +26,7 @@ public class AlumnoDAO {
 	public void insertarAlumno(Alumno alumno) {
         try {
         	//Cambiar insert por el de la tabla correcto
+        	//insert into alumno (idalumno, nombre, Password, ano_matricula, carrera) values(747325, "eaao", "21234", 13/02/1991, 412)
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
             preparedStatement.setString(1, Integer.toString(alumno.getIdAlumno()));
