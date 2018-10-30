@@ -167,6 +167,33 @@ LOCK TABLES `grupotrabajo` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `noticias`
+--
+
+DROP TABLE IF EXISTS `noticias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `noticias` (
+  `idNoticias` int(11) NOT NULL AUTO_INCREMENT,
+  `Titulo` varchar(45) NOT NULL,
+  `Noticia` text NOT NULL,
+  `Imagen` varchar(45) DEFAULT NULL,
+  `Talternativo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idNoticias`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `noticias`
+--
+
+LOCK TABLES `noticias` WRITE;
+/*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
+INSERT INTO `noticias` VALUES (1,'primera noticia publicada','esto es una noticia publicada y no hay mucho más que decir','./css/imagenes/box-image1.gif','imagen de una noticia');
+/*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `preguntas`
 --
 
@@ -420,4 +447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-30 14:50:56
+-- Dump completed on 2018-10-30 14:58:49
