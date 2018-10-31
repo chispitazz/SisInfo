@@ -2,6 +2,7 @@ package Serlvets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.spi.TimeZoneNameProvider;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ import aplicacionWeb.vo.ListaNoticias;
 @WebServlet("/Index")
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static int tipoConexion = 0;
+ 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,13 +44,13 @@ public class Index extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		if(sesion.getAttribute("Profesor") != null) {
-			this.tipoConexion = 3;
+			request.setAttribute("TipoConexion", 3);
 		}else if(sesion.getAttribute("Alumno") != null) {
-			this.tipoConexion = 2;
+			request.setAttribute("TipoConexion", 2);
 		}else if(sesion.getAttribute("Anonimo") != null) {
-			this.tipoConexion = 1;
+			request.setAttribute("TipoConexion", 1);
 		}else {
-			this.tipoConexion = 0;
+			request.setAttribute("TipoConexion", 0);
 		}
 		NoticiaDAO nDAO = new NoticiaDAO();
 		try {
@@ -59,8 +60,6 @@ public class Index extends HttpServlet {
 		if(!nDAO.conectado()) {
 			System.out.println("error al conectar con la BBDD");
 		}else {
-		
-	//		System.out.println("QUE PASAAAAAAAAAAA");
 			ListaNoticias ultimasNoticias = nDAO.getListaNoticias();
 			request.setAttribute("Noticas", ultimasNoticias);
 			//getServletConfig().getServletContext().getRequestDispatcher().forward(request,response);

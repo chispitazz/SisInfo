@@ -18,7 +18,7 @@
 </head>
 </head>
 <body>
-
+<%@ include file="menuPral.jsp" %>
 <%! 
 	//Declaración de variables globales
 
