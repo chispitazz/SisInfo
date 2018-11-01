@@ -66,9 +66,9 @@ public class Login extends HttpServlet {
 					Alumno alumno = new AlumnoDAO().buscarAlumnoID(tokens[0]);
 					if( alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), (String) request.getParameter("password"))) {
 						hs.setAttribute("Alumno", alumno);
-						hs.setAttribute("TipoConexion", 2);
+						request.setAttribute("TipoConexion", 2);
 						//TODO: realizar Perfil.jsp
-						request.getRequestDispatcher("/Perfil.html").forward(request, response);
+						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 					}else {
 						//TODO: Error con usuario o contraseña
 					}

@@ -11,12 +11,12 @@
 
 <header id="Menu">
 		<ul class="botonesIzq">
-            <li><a href="index.html">Noticias</a></li>
+            <li><a href="Index">Noticias</a></li>
           	<li><a href="Carteles.html">Carteles</a></li>
 		  	<li><a href="#">Wiki</a></li>
             <% 
             	
-            	conectado = (int) request.getAttribute("TipoConexion");
+            conectado = (int) request.getAttribute("TipoConexion");
 			 switch (conectado){
 			 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
 				break;

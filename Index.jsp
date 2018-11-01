@@ -16,7 +16,6 @@
 <link href="./css/style.css" rel="stylesheet" type="text/css">
 <link href="./css/IndexStyle.css" rel="stylesheet" type="text/css">
 </head>
-</head>
 <body>
 <%@ include file="menuPral.jsp" %>
 <%! 
