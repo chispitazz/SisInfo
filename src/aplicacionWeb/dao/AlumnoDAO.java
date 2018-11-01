@@ -6,21 +6,29 @@ import aplicacionWeb.vo.Alumno;
 
 import java.sql.*;
 
-public class AlumnoDAO {
+public class AlumnoDAO extends DAO{
 	
 	Connection con=null;
 	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
+	public Alumno buscarAlumnoID(String idAlumno) throws SQLException {
+		Statement statement = mysql.crearSentencia();
+	    ResultSet resultSet = statement.executeQuery("SELECT * FROM alumno WHERE idAlumno=" + idAlumno);
+	    Alumno al = null;
+	    if(resultSet.next()) {
+	    	System.out.println(resultSet.getInt("idAlumno"));
+	    	System.out.println(resultSet.getString("correo")); 
+	    	System.out.println(resultSet.getInt("carrera"));
+	    	//System.out.println(resultSet.getInt("anyoMatricula"));
+	    	System.out.println(resultSet.getString("password"));
+	    	System.out.println(resultSet.getString("nombre"));
+	    	/*al = new Alumno(resultSet.getInt("idAlumno"), /*resultSet.getString("correo")*//*"aa", resultSet.getInt("carrera"),0,
+		    		/*resultSet.getInt("anyoMatricula")*//*1234,  resultSet.getString("password"),resultSet.getString("nomnbre"));*/
+	    	al =new Alumno(resultSet.getInt("idAlumno"),"aa",resultSet.getInt("carrera"),0,1023,resultSet.getString("password"), resultSet.getString("nombre")); 
+		    
+	    }
+		
+	    return al;
+	    		
 	}
 	
 	public void insertarAlumno(Alumno alumno) {
@@ -36,7 +44,7 @@ public class AlumnoDAO {
             e.printStackTrace();
         }
 	}
-	
+	/*//TODO: rehacer con el nuevo DAO
 	 public List<Alumno> select() {
 	        List<Alumno> alumnos = new LinkedList<Alumno>();
 	         try {
@@ -63,19 +71,7 @@ public class AlumnoDAO {
 	            System.out.println(alumnos);
 	            return alumnos;
 	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
+*/
 	
 	
 }

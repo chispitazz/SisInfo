@@ -44,7 +44,7 @@ public class Index extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		if(sesion.getAttribute("Profesor") != null) {
-			request.setAttribute("TipoConexion", 3);
+			request.setAttribute("TipoConexion", 3);  //¿¿¿Se puede obviar simplemente con .getAttribute("tipoConexion")????
 		}else if(sesion.getAttribute("Alumno") != null) {
 			request.setAttribute("TipoConexion", 2);
 		}else if(sesion.getAttribute("Anonimo") != null) {

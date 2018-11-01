@@ -1,52 +1,67 @@
 package aplicacionWeb.vo;
 
 public class Alumno extends PersonalUniversitario{
-	private String carrera;
-	private String grupo;
-	private Integer anyoMatricula;
-	private Integer idAlumno;
+	private int carrera;
+	private int grupo;
+	private int anyoMatricula;
+	private int idAlumno;
+	private String password;
 	
-	
-	public Alumno(String nombre, String correo, String carrera, String grupo,
-			Integer anyoMatricula, Integer idAlumno ) {
+	public Alumno(String nombre, String correo, int carrera, int grupo, int anyoMatricula, String password) {
+		//TODO: parsear correo para extraer id
 		super(nombre, correo);
 		this.carrera = carrera;
 		this.grupo = grupo;
 		this.anyoMatricula = anyoMatricula;
-		this.idAlumno=idAlumno;
+		this.password = password;
+		//this.idAlumno=idAlumno;
 	}
 	
+	public Alumno(int id, String correo, int carrera, int grupo, int anyoMatricula, String password, String nombre) {
+		//TODO: parsear correo para extraer id
+		super(nombre, correo);
+		this.idAlumno=id;
+		this.carrera = carrera;		
+		this.grupo = grupo;
+		this.anyoMatricula = anyoMatricula;
+		this.password = password;
+		
+	}
 	
-	public Integer getIdAlumno() {
+	public boolean verificarAlumno(int id, String pass) {
+		return (this.idAlumno == id && pass.equals(this.password));
+	}
+	
+	public int getIdAlumno() {
 		return idAlumno;
 	}
-	public void setIdAlumno(Integer idAlumno) {
+	public void setIdAlumno(int idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 	/*
 	 * Getters and setters
 	 */
-	public String getCarrera() {
+	public int getCarrera() {
 		return carrera;
 	}
 
-	public void setCarrera(String carrera) {
+	public void setCarrera(int carrera) {
 		this.carrera = carrera;
 	}
 
-	public String getGrupo() {
+	public int getGrupo() {
 		return grupo;
 	}
 
-	public void setGrupo(String grupo) {
+	public void setGrupo(int grupo) {
 		this.grupo = grupo;
 	}
 
-	public Integer getAnyoMatricula() {
+	public int getAnyoMatricula() {
 		return anyoMatricula;
 	}
 
-	public void setAnyoMatricula(Integer anyoMatricula) {
+	public void setAnyoMatricula(int anyoMatricula) {
 		this.anyoMatricula = anyoMatricula;
 	}
 
