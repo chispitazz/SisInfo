@@ -28,10 +28,10 @@ public class Login extends HttpServlet {
     }
 
 	/**
+	 * Llama a doPost
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 		if(request.getParameter("usuario") == null || request.getParameter("password") == null) {
 			response.sendRedirect("AccesoError.html");
 		}else {
-			//Existe usuario y contraseÃ±a. 
+			//Existe usuario y contraseña. 
 			
 			String correo = (String) request.getParameter("usuario");
 			String[] tokens = correo.split("@");

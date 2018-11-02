@@ -12,7 +12,7 @@ public class AnonimoDAO extends DAO{
 	
 	public Anonimo buscarAnonimoID(String nick) throws SQLException {
 		Statement statement = mysql.crearSentencia();
-	    ResultSet resultSet = statement.executeQuery("SELECT * FROM anonimo WHERE nick=" + nick);
+	    ResultSet resultSet = statement.executeQuery("SELECT * FROM anonimo WHERE nick='" + nick + "'");
 	    Anonimo an = null;
 	    if(resultSet.next()) {
 	    	System.out.println(resultSet.getInt("idAnonimo"));
