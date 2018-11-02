@@ -50,9 +50,9 @@ public class Login extends HttpServlet {
 			//TODO: REDIRECT error
 			System.out.println("Sin usuario");
 			//TODO: REDIRECT error
-			System.out.println("Sin contaseña");
+			System.out.println("Sin contaseÃ±a");
 		}else {
-			//Existe usuario y contraseña. 
+			//Existe usuario y contraseÃ±a. 
 			//Se busca Buscar en BD
 			String correo = (String) request.getParameter("usuario");
 			String[] tokens = correo.split("@");
@@ -64,13 +64,15 @@ public class Login extends HttpServlet {
 				//		String servidorMail = tokens[1];
 				try {
 					Alumno alumno = new AlumnoDAO().buscarAlumnoID(tokens[0]);
+					Anonimo anonimo = new AnonimoDAO().buscarAnonimoID(tokens[0]);
+					Profesor prefesor = new ProfesorDAO().buscarProfesorID(tokens[0]);
 					if( alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), (String) request.getParameter("password"))) {
 						hs.setAttribute("Alumno", alumno);
 						request.setAttribute("TipoConexion", 2);
 						//TODO: realizar Perfil.jsp
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 					}else {
-						//TODO: Error con usuario o contraseña
+						//TODO: Error con usuario o contraseÃ±a
 					}
 				} catch (SQLException e) {
 					// TODO redireccionar Error conexion
