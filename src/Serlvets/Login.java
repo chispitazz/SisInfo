@@ -64,8 +64,6 @@ public class Login extends HttpServlet {
 				//		String servidorMail = tokens[1];
 				try {
 					Alumno alumno = new AlumnoDAO().buscarAlumnoID(tokens[0]);
-					Anonimo anonimo = new AnonimoDAO().buscarAnonimoID(tokens[0]);
-					Profesor prefesor = new ProfesorDAO().buscarProfesorID(tokens[0]);
 					if( alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), (String) request.getParameter("password"))) {
 						hs.setAttribute("Alumno", alumno);
 						request.setAttribute("TipoConexion", 2);
