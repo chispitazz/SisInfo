@@ -2,8 +2,6 @@ package Serlvets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +38,7 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource" })
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// Auto generado, Que hace getwriter? 	
@@ -63,10 +61,11 @@ public class Login extends HttpServlet {
 				//if(tokens[1] != null)
 				//		String servidorMail = tokens[1];
 				try {
+					System.out.println("input Password = " + (String) request.getParameter("password"));
 					Alumno alumno = new AlumnoDAO().buscarAlumnoID(tokens[0]);
 					if( alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), (String) request.getParameter("password"))) {
 						hs.setAttribute("Alumno", alumno);
-						request.setAttribute("TipoConexion", 2);
+						request.setAttribute("TipoConexion", alumno.tipoConect());
 						//TODO: realizar Perfil.jsp
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 					}else {

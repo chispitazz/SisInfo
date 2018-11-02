@@ -8,8 +8,8 @@ public class Profesor extends PersonalUniversitario {
 	
 	
 	public Profesor(String nombre, String correo,String departamento, String despacho, 
-			String sitioWeb,boolean administrador) {
-		super(nombre,correo);
+			String sitioWeb,boolean administrador, String pass) {
+		super(nombre,correo, pass);
 		this.departamento = departamento;
 		this.despacho = despacho;
 		this.sitioWeb = sitioWeb;
@@ -42,6 +42,24 @@ public class Profesor extends PersonalUniversitario {
 	}
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
+	}
+	
+	/**
+	 * 
+	 * @return 3: tipo de conexion establecido para Profesores
+	 */
+	public int tipoConect() {
+		return 3;
+	}
+
+	/**
+	 * 
+	 * @param nombre: nombre del profesor que se quiere verificar
+	 * @param pass: pasword sin encriptar a verificar
+	 * @return devuelve TRUE si nombre y contraseña son las mismas que las de this
+	 */
+	public boolean verificarProfesor(String nombre, String pass) {
+		return nombre.equals(this.getNombre()) && this.verificarUsuario(pass);
 	}
 	/*   */
 	public void evaluar(){

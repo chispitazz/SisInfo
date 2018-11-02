@@ -5,11 +5,10 @@ public class Alumno extends PersonalUniversitario{
 	private int grupo;
 	private int anyoMatricula;
 	private int idAlumno;
-	private String password;
 	
 	public Alumno(String nombre, String correo, int carrera, int grupo, int anyoMatricula, String password) {
 		//TODO: parsear correo para extraer id
-		super(nombre, correo);
+		super(nombre, correo, password);
 		this.carrera = carrera;
 		this.grupo = grupo;
 		this.anyoMatricula = anyoMatricula;
@@ -19,17 +18,12 @@ public class Alumno extends PersonalUniversitario{
 	
 	public Alumno(int id, String correo, int carrera, int grupo, int anyoMatricula, String password, String nombre) {
 		//TODO: parsear correo para extraer id
-		super(nombre, correo);
+		super(nombre, correo, password);
 		this.idAlumno=id;
 		this.carrera = carrera;		
 		this.grupo = grupo;
 		this.anyoMatricula = anyoMatricula;
-		this.password = password;
 		
-	}
-	
-	public boolean verificarAlumno(int id, String pass) {
-		return (this.idAlumno == id && pass.equals(this.password));
 	}
 	
 	public int getIdAlumno() {
@@ -70,7 +64,24 @@ public class Alumno extends PersonalUniversitario{
 		//add to DB
 		
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre: nombre del profesor que se quiere verificar
+	 * @param pass: pasword sin encriptar a verificar
+	 * @return devuelve TRUE si nombre y contraseña son las mismas que las de this
+	 */
+	public boolean verificarAlumno(int id, String pass) {
+		return id == this.idAlumno && this.verificarUsuario(pass);
+	}
+	
+	/**
+	 * 
+	 * @return 2: tipo de conexion establecido para alumnos
+	 */
+	public int tipoConect() {
+		return 2;
+	}
 
 	
 	

@@ -1,7 +1,6 @@
 package aplicacionWeb.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +40,7 @@ public class ProfesorDAO {
 	        			//String sitioWeb,boolean administrador)
 	                    profesor = new Profesor(resultSet.getString("nombre"),resultSet.getString("correo"),
 	                    		resultSet.getString("departamento"),resultSet.getString("despacho"),
-	                    		resultSet.getString("sitioWeb"),Boolean.parseBoolean(resultSet.getString("anyoMatricula")));
+	                    		resultSet.getString("sitioWeb"),false/*Boolean.parseBoolean(resultSet.getInt("administrador")*/,resultSet.getString("Password"));
 	                    profesores.add(profesor);   
 
 	                }

@@ -83,6 +83,13 @@ public class Anonimo {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return 1: tipo de conexion establecido para anonimos
+	 */
+	public int tipoConect() {
+		return 1;
+	}
 
 
 	public void verRanking(){}
