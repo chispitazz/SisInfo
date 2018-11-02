@@ -1,13 +1,16 @@
 package aplicacionWeb.vo;
 
+import aplicacionWeb.security.verificacionAcceso;
+
 public class Anonimo {
 	int idAnonimo;
-	int anyoNacimiento;
+	int anyoNacimiento = 0;
 	String correo;
 	String nick;
-	String ocupacion;
+	String ocupacion = "";
 	String pass;
-	int puntos;
+	int puntos = 0;
+	verificacionAcceso VA;
 
 	
 	public Anonimo(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos, String passw) {
@@ -18,6 +21,7 @@ public class Anonimo {
 		this.ocupacion = ocupacion;
 		this.puntos = puntos;
 		this.pass = passw;
+		this.VA = new verificacionAcceso();
 	}
 	
 	public int getIdAnonimo() {
@@ -93,4 +97,8 @@ public class Anonimo {
 
 
 	public void verRanking(){}
+
+	public boolean verificarAnonimo(String nick, String pass) {
+		return this.nick.equals(nick) && VA.verificarPassword(this.pass, pass);
+	}
 }

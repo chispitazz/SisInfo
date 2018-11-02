@@ -1,6 +1,7 @@
 package aplicacionWeb.vo;
 
 public class Profesor extends PersonalUniversitario {
+	private int idProfesor; 
 	private String departamento;
 	private String despacho;	//no se que tipo de dato es, la verdad
 	private String sitioWeb;
@@ -8,12 +9,17 @@ public class Profesor extends PersonalUniversitario {
 	
 	
 	public Profesor(String nombre, String correo,String departamento, String despacho, 
-			String sitioWeb,boolean administrador, String pass) {
+			String sitioWeb,boolean administrador, String pass, int id) {
 		super(nombre,correo, pass);
 		this.departamento = departamento;
 		this.despacho = despacho;
 		this.sitioWeb = sitioWeb;
 		this.administrador = administrador;
+		this.idProfesor = id;
+	}
+	
+	public int getID() {
+		return this.idProfesor;
 	}
 	
 	/*
@@ -58,8 +64,8 @@ public class Profesor extends PersonalUniversitario {
 	 * @param pass: pasword sin encriptar a verificar
 	 * @return devuelve TRUE si nombre y contraseña son las mismas que las de this
 	 */
-	public boolean verificarProfesor(String nombre, String pass) {
-		return nombre.equals(this.getNombre()) && this.verificarUsuario(pass);
+	public boolean verificarProfesor(String correo, String pass) {
+		return correo.equals(this.getCorreo()) && this.verificarUsuario(pass);
 	}
 	/*   */
 	public void evaluar(){

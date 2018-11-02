@@ -10,20 +10,20 @@ import java.sql.*;
 public class AnonimoDAO extends DAO{
 	
 	
-	public Anonimo buscarProfesorID(String nick) throws SQLException {
+	public Anonimo buscarAnonimoID(String nick) throws SQLException {
 		Statement statement = mysql.crearSentencia();
 	    ResultSet resultSet = statement.executeQuery("SELECT * FROM anonimo WHERE nick=" + nick);
 	    Anonimo an = null;
 	    if(resultSet.next()) {
 	    	System.out.println(resultSet.getInt("idAnonimo"));
-	    	System.out.println(resultSet.getInt("anyoNacimiento")); 
+	    	System.out.println(resultSet.getInt("AnoNacimiento")); 
 	    	System.out.println(resultSet.getString("Correo"));
 	    	System.out.println(resultSet.getString("nick"));
 	    	System.out.println(resultSet.getString("ocupacion"));
 	    	System.out.println(resultSet.getString("password")); 
 	    	System.out.println(resultSet.getInt("puntos"));
 	    	
-		    an = new Anonimo(resultSet.getInt("idAnonimo"),resultSet.getInt("anyoNacimiento"),
+		    an = new Anonimo(resultSet.getInt("idAnonimo"),resultSet.getInt("AnoNacimiento"),
 		    		resultSet.getString("Correo"),resultSet.getString("nick"),resultSet.getString("ocupacion"),
 		    		resultSet.getInt("puntos"),resultSet.getString("password"));
 	    }
@@ -33,8 +33,8 @@ public class AnonimoDAO extends DAO{
         try {
         	//Cambiar insert por el de la tabla correcto
             PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO Anonimo "
-            						+ "(AnyoNaciemiento,correo,nick,ocupacion,puntos,password) "
-            							+ "VALUES (?,?,?,?,?,?,?)");
+            						+ "(AnoNacimiento,correo,nick,ocupacion,puntos,password) "
+            							+ "VALUES (?,?,?,?,?,?)");
             //
             int i = 0;
           //  preparedStatement.setInt(i++,Anonimo.getIdAnonimo());
@@ -61,8 +61,7 @@ public class AnonimoDAO extends DAO{
 	                 
 	                Anonimo Anonimo = null;
 	                while(resultSet.next()){
-	                	//(int idAnonimo, int anyoNacimiento, String correo, String nick, String ocupacion, int puntos)
-	                    Anonimo = new Anonimo(resultSet.getInt("idAnonimo"),resultSet.getInt("anyoNacimiento"),
+	                    Anonimo = new Anonimo(resultSet.getInt("idAnonimo"),resultSet.getInt("AnoNacimiento"),
 	        		    		resultSet.getString("Correo"),resultSet.getString("nick"),resultSet.getString("ocupacion"),
 	        		    		resultSet.getInt("puntos"),resultSet.getString("password"));
 	                    Anonimos.add(Anonimo);   

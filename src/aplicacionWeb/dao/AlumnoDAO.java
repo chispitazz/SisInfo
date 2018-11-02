@@ -8,32 +8,37 @@ import java.sql.*;
 
 public class AlumnoDAO extends DAO{
 	
+	@SuppressWarnings("finally")
 	public Alumno buscarAlumnoID(String idAlumno) throws SQLException {
-		Statement statement = mysql.crearSentencia();
-	    ResultSet resultSet = statement.executeQuery("SELECT * FROM alumno WHERE idAlumno=" + idAlumno);
-	    Alumno al = null;
-	    if(resultSet.next()) {
-	    	System.out.println(resultSet.getInt("idAlumno"));
-	    	System.out.println(resultSet.getString("correo")); 
-	    	System.out.println(resultSet.getInt("carrera"));
-	    	//System.out.println(resultSet.getInt("anyoMatricula"));
-	    	System.out.println(resultSet.getString("password"));
-	    	System.out.println(resultSet.getString("nombre"));
-	    	/*al = new Alumno(resultSet.getInt("idAlumno"), /*resultSet.getString("correo")*//*"aa", resultSet.getInt("carrera"),0,
-		    		/*resultSet.getInt("anyoMatricula")*//*1234,  resultSet.getString("password"),resultSet.getString("nomnbre"));*/
-	    	al =new Alumno(resultSet.getInt("idAlumno"),"aa",resultSet.getInt("carrera"),0,1023,resultSet.getString("password"), resultSet.getString("nombre")); 
-		    
-	    }
-		
-	    return al;
-	    		
+		Alumno al = null;
+		try {
+			int id = Integer.parseInt(idAlumno);
+			System.out.println(id);
+			Statement statement = mysql.crearSentencia();
+		    ResultSet resultSet = statement.executeQuery("SELECT * FROM alumno WHERE idAlumno=" + idAlumno); 
+		    if(resultSet.next()) {
+		    	System.out.println(resultSet.getInt("idAlumno"));
+		    	System.out.println(resultSet.getString("correo")); 
+		    	System.out.println(resultSet.getInt("carrera"));
+		    	//System.out.println(resultSet.getInt("anyoMatricula"));
+		    	System.out.println(resultSet.getString("password"));
+		    	System.out.println(resultSet.getString("nombre"));
+		    	al =new Alumno(resultSet.getInt("idAlumno"),"aa",resultSet.getInt("carrera"),0,1023,resultSet.getString("password"), resultSet.getString("nombre")); 
+			    
+		    }
+		}catch(NumberFormatException e){
+			System.out.println("ID no correcto");
+		}finally {
+			return al;
+		}
+ 		
 	}
 	
 	public void insertarAlumno(Alumno alumno) {
         try {
         	//Cambiar insert por el de la tabla correcto
         	//insert into alumno (idalumno, nombre, Password, ano_matricula, carrera) values(747325, "eaao", "21234", 13/02/1991, 412)
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
+            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
             preparedStatement.setString(1, Integer.toString(alumno.getIdAlumno()));
             preparedStatement.executeUpdate();
