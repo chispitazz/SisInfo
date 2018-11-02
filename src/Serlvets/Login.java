@@ -43,14 +43,14 @@ public class Login extends HttpServlet {
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// Auto generado, Que hace getwriter? 
+		// Auto generado, Que hace getwriter? 	
 		//			response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession hs = request.getSession();
 		if(request.getParameter("usuario") == null || request.getParameter("password") == null) {
 			//TODO: REDIRECT error
 			System.out.println("Sin usuario");
 			//TODO: REDIRECT error
-			System.out.println("Sin contaseña");
+			System.out.println("Sin contase�a");
 		}else {
 			//Existe usuario y contraseña. 
 			//Se busca Buscar en BD
@@ -80,5 +80,5 @@ public class Login extends HttpServlet {
 		}
 	
 	}
-
+		
 }

@@ -14,23 +14,25 @@
           	<li><a href="Carteles.html">Carteles</a></li>
 		  	<li><a href="#">Wiki</a></li>
             <% 
-            	
-            conectado = (int) request.getAttribute("TipoConexion");
-			 switch (conectado){
-			 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
-				break;
-			 case 2:	out.print("<li><a href=\"#\">Entregar</a></li>");
-            	break;
-            default:
-			}
+            
+            if(request.getAttribute("TipoConexion") != null){
+            	conectado = (int) request.getAttribute("TipoConexion");
+				 switch (conectado){
+				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
+					break;
+				 case 2:	out.print("<li><a href=\"#\">Entregar</a></li>");
+	            	break;
+	            default:
+				}
+            }
             	%>
             
         </ul>
         <ul class="last">
         <%
         	if(conectado >0 ){
-        		out.print("<li><a href=\"Index.html\">Ver Perfil</a></li>");
-        		out.print("<li><a href=\"Index.html\">Desconectar</a></li>");
+        		out.print("<li><a href=\"Perfil.jsp\">Ver Perfil</a></li>");
+        		out.print("<li><a href=\"UnLogin\">Desconectar</a></li>");
         	}else{
         		out.print("<li><a href=\"Acceso.html\">Acceder</a></li>");
         	}
