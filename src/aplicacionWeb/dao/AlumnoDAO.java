@@ -8,8 +8,6 @@ import java.sql.*;
 
 public class AlumnoDAO extends DAO{
 	
-	Connection con=null;
-	
 	public Alumno buscarAlumnoID(String idAlumno) throws SQLException {
 		Statement statement = mysql.crearSentencia();
 	    ResultSet resultSet = statement.executeQuery("SELECT * FROM alumno WHERE idAlumno=" + idAlumno);
