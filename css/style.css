@@ -51,16 +51,17 @@ body {
 .last{
 	position: absolute;
 	right: 25px;
-	
+	display: flex;
+	list-style: none;
 }
 
 .last li{
-	display: flex;
+	padding: 14px 0px 0px 0px;
 	
 }
 
 .last li a{
-    display: block;
+    
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -70,7 +71,6 @@ body {
     background-color: #333;
 }
 
-}
 /*
 #Menu ul {
 	padding-top: 15px;
