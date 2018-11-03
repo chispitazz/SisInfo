@@ -12,15 +12,7 @@
 
 
 <main class="mainPerfil">
-<div class="sidenav">
-	
-		<a href="EditarPerfil.html">Editar perfil</a>
-		<a href="verEntregas.html">Ver carteles entregados</a>
-		<a href="AddNoticia.html">Publicar noticia</a>
-		<a href="RealizarEntrega.html">Publicar cartel</a>
-		<a href="AddAlumno.html">Añadir alumnos</a>
-	
-</div>	
+
 <div class="content">
 	<section class="imagenContent" >
 		<img src="./css/imagenes/perfil.png" alt="Foto de Perfil" width="100" height="100">

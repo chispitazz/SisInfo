@@ -35,6 +35,18 @@ public class Login extends HttpServlet {
 		doPost(request, response);
 	}
 
+	
+	protected void errorConect(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("IntentosConnect", 1);
+		try {
+			request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			System.out.println("Excepcion Acceso.jsp con errores " + e.getMessage());
+		}
+	}
+	
+	
+	
 	/** 
 	 * Loguea con la informacion wn los Parametros "usuario" y "pasword" si usuario existe en la BBDD con la misma "password"
 	 * En caso contrario, redirecciona a AccesoError
@@ -47,16 +59,16 @@ public class Login extends HttpServlet {
 		//			response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession hs = request.getSession();
 		if(request.getParameter("usuario") == null || request.getParameter("password") == null) {
-			response.sendRedirect("AccesoError.html");
+			errorConect(request, response);
 		}else {
 			//Existe usuario y contraseña. 
-			
 			String correo = (String) request.getParameter("usuario");
 			String[] tokens = correo.split("@");
 			
 			if(tokens[0] == null) {
 				//usuario mal insertado
-				response.sendRedirect("AccesoError.html");
+				//Redireccion a Accesor ERROR
+				errorConect(request, response);
 			}else {
 				try {
 					//Buscar en BBDD
@@ -74,26 +86,26 @@ public class Login extends HttpServlet {
 					if(alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), ps)) {
 						//Si es alumno
 						hs.setAttribute("Alumno", alumno);
-						request.setAttribute("TipoConexion", alumno.tipoConect());
+						hs.setAttribute("TipoConexion", alumno.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 						
 					}else if( profesor!=null && profesor.verificarProfesor(correo, ps)){
 						// Si es profesor
 						hs.setAttribute("Profesor", profesor);
-						request.setAttribute("TipoConexion", profesor.tipoConect());
+						hs.setAttribute("TipoConexion", profesor.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 						
 					}else if( anonimo !=null && anonimo.verificarAnonimo(correo, ps)){
 						//Si es anonimo
 						hs.setAttribute("Anonimo", anonimo);
-						request.setAttribute("TipoConexion", anonimo.tipoConect());
+						hs.setAttribute("TipoConexion", anonimo.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 					}else {
-						response.sendRedirect("AccesoError.html");
+						errorConect(request, response);
 					}
 				} catch (SQLException e) {
 					System.out.println("SQL EXCEPTION: " + e.getMessage() + " " + e.getErrorCode());
-					response.sendRedirect("AccesoError.html");
+					errorConect(request, response);
 				}
 				
 			}

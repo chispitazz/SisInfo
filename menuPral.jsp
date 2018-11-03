@@ -34,7 +34,7 @@
         		out.print("<li><a href=\"Perfil.jsp\">Ver Perfil</a></li>");
         		out.print("<li><a href=\"UnLogin\">Desconectar</a></li>");
         	}else{
-        		out.print("<li><a href=\"Acceso.html\">Acceder</a></li>");
+        		out.print("<li><a href=\"Acceso\">Acceder</a></li>");
         	}
         %>
           
