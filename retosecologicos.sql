@@ -28,7 +28,7 @@ CREATE TABLE `alumno` (
   `idalumno` int(7) NOT NULL,
   `correo` varchar(16) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
+  `Password` tinytext NOT NULL COMMENT 'password de 747325 = 21234',
   `ano_matricula` year(4) NOT NULL,
   `Carrera` int(4) NOT NULL,
   PRIMARY KEY (`idalumno`),
@@ -42,7 +42,7 @@ CREATE TABLE `alumno` (
 
 LOCK TABLES `alumno` WRITE;
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-INSERT INTO `alumno` VALUES (747325,NULL,'eaao','21234',0000,412);
+INSERT INTO `alumno` VALUES (747325,NULL,'eaao','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU',0000,412);
 /*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,13 +57,13 @@ CREATE TABLE `anonimo` (
   `idAnonimo` int(11) NOT NULL AUTO_INCREMENT,
   `Nick` varchar(45) NOT NULL,
   `Correo` varchar(45) DEFAULT NULL,
-  `Password` varchar(45) DEFAULT NULL,
+  `Password` tinytext,
   `Ocupacion` varchar(45) DEFAULT NULL,
   `AnoNacimiento` year(4) DEFAULT NULL,
   `Puntos` int(11) DEFAULT NULL,
   PRIMARY KEY (`idAnonimo`,`Nick`),
   UNIQUE KEY `Correo_UNIQUE` (`Correo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `anonimo` (
 
 LOCK TABLES `anonimo` WRITE;
 /*!40000 ALTER TABLE `anonimo` DISABLE KEYS */;
+INSERT INTO `anonimo` VALUES (1,'Ass','unCorreo@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0),(3,'ASS','Ass@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0),(4,'OSS','Oss@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0);
 /*!40000 ALTER TABLE `anonimo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,14 +227,16 @@ DROP TABLE IF EXISTS `profesor`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `profesor` (
   `idProfesor` int(11) NOT NULL AUTO_INCREMENT,
+  `Correo` varchar(45) NOT NULL,
   `Nombre` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
+  `Password` tinytext NOT NULL,
   `Departamento` varchar(45) DEFAULT NULL,
   `SitioWeb` varchar(45) DEFAULT NULL,
   `Despacho` varchar(45) DEFAULT NULL,
-  `Administrador` tinyint(4) NOT NULL,
-  PRIMARY KEY (`idProfesor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Administrador` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idProfesor`),
+  UNIQUE KEY `Correo_UNIQUE` (`Correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,6 +245,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
+INSERT INTO `profesor` VALUES (1,'UNO@unizar.es','Perico el de los palotes','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','ataques biologicos','unSitioWeb.com','44.0b',0);
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-30 14:58:49
+-- Dump completed on 2018-11-03 10:57:12

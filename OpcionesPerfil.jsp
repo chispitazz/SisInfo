@@ -11,42 +11,27 @@
 <div class="sidenav">
 	
 		<a href="EditarPerfil.html">Editar perfil</a>
-		<a href="verEntregas.html">Ver carteles entregados</a>
-		<a href="AddNoticia.html">Publicar noticia</a>
-		<a href="RealizarEntrega.html">Publicar cartel</a>
-		<a href="AddAlumno.html">Añadir alumnos</a>
-</div>	
-<header id="Menu">
-		<ul class="botonesIzq">
-            <li><a href="Index">Noticias</a></li>
-          	<li><a href="Carteles.html">Carteles</a></li>
-		  	<li><a href="#">Wiki</a></li>
-            <% 
+		 <% 
             
             if(request.getAttribute("TipoConexion") != null){
-            	conectado = (int) request.getAttribute("TipoConexion");
+            	conectado = (int) request.getSession().getAttribute("TipoConexion");
 				 switch (conectado){
-				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
+				 case 3: 	out.print("<a href=\"verEntregas.html\">Ver carteles entregados</a>");
+				 			out.print("<a href=\"AddNoticia.html\">Publicar noticia</a>");
+				 			/*out.print("<a href=\"RealizarEntrega.html\">Publicar cartel</a>");*/
+				 			out.print("<a href=\"AddAlumno.html\">Añadir alumnos</a>");
 					break;
-				 case 2:	out.print("<li><a href=\"#\">Entregar</a></li>");
+				 case 2:	/*out.print("<a href=\"verEntregas.html\">Ver carteles entregados</a>");*/
+		 					out.print("<a href=\"RealizarEntrega.html\">Entregar trabajo</a>");
+		 					/*out.print("<a href=\"AddNoticia.html\">Publicar noticia</a>");*/
+		 					/*out.print("<a href=\"AddAlumno.html\">Añadir alumnos</a>");*/
+				 case 1:	out.print("<a href=\"#\">Ver Ranking");
 	            	break;
 	            default:
+	            		response.sendRedirect("Acceso");
 				}
             }
             	%>
-            
-        </ul>
-        <ul class="last">
-        <%
-        	if(conectado >0 ){
-        		out.print("<li><a href=\"Perfil.jsp\">Ver Perfil</a></li>");
-        		out.print("<li><a href=\"UnLogin\">Desconectar</a></li>");
-        	}else{
-        		out.print("<li><a href=\"Acceso\">Acceder</a></li>");
-        	}
-        %>
-          
-        </ul>
-	</header>
-</body>
+
+</div>	
 </html>
