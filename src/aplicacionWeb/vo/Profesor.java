@@ -1,6 +1,6 @@
 package aplicacionWeb.vo;
 
-public class Profesor extends PersonalUniversitario {
+public class Profesor extends PersonalUniversitario implements Usuario{
 	private int idProfesor; 
 	private String departamento;
 	private String despacho;	//no se que tipo de dato es, la verdad
@@ -18,7 +18,7 @@ public class Profesor extends PersonalUniversitario {
 		this.idProfesor = id;
 	}
 	
-	public int getID() {
+	public int getId() {
 		return this.idProfesor;
 	}
 	
