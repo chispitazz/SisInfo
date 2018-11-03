@@ -42,7 +42,7 @@ public class Index extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession sesion = request.getSession();
+		/*HttpSession sesion = request.getSession();
 		if(sesion.getAttribute("Profesor") != null) {
 			request.setAttribute("TipoConexion", 3);  //¿¿¿Se puede obviar simplemente con .getAttribute("tipoConexion")????
 		}else if(sesion.getAttribute("Alumno") != null) {
@@ -51,20 +51,21 @@ public class Index extends HttpServlet {
 			request.setAttribute("TipoConexion", 1);
 		}else {
 			request.setAttribute("TipoConexion", 0);
-		}
+		}*/
 		NoticiaDAO nDAO = new NoticiaDAO();
 		try {
-		for(int i = 0; i<20 && !nDAO.conectado(); i++) {
-			nDAO.conectarDAO();
-		}
-		if(!nDAO.conectado()) {
-			System.out.println("error al conectar con la BBDD");
-		}else {
-			ListaNoticias ultimasNoticias = nDAO.getListaNoticias();
-			request.setAttribute("Noticas", ultimasNoticias);
-			//getServletConfig().getServletContext().getRequestDispatcher().forward(request,response);
-			request.getRequestDispatcher("/Index.jsp").forward(request, response);
-		}
+			for(int i = 0; i<20 && !nDAO.conectado(); i++) {
+				nDAO.conectarDAO();
+			}
+			if(!nDAO.conectado()) {
+				System.out.println("error al conectar con la BBDD");
+				//TODO:Redirect Error al conectar
+			}else {
+				ListaNoticias ultimasNoticias = nDAO.getListaNoticias();
+				request.setAttribute("Noticas", ultimasNoticias);
+				//getServletConfig().getServletContext().getRequestDispatcher().forward(request,response);
+				request.getRequestDispatcher("/Index.jsp").forward(request, response);
+			}
 		}catch(SQLException e) {
 			System.out.println("imosible conectar" + e.getMessage());
 		}

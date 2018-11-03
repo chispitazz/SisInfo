@@ -2,7 +2,7 @@ package aplicacionWeb.vo;
 
 import aplicacionWeb.security.verificacionAcceso;
 
-public class Anonimo {
+public class Anonimo implements Usuario{
 	int idAnonimo;
 	int anyoNacimiento = 0;
 	String correo;
@@ -24,7 +24,7 @@ public class Anonimo {
 		this.VA = new verificacionAcceso();
 	}
 	
-	public int getIdAnonimo() {
+	public int getId() {
 		return idAnonimo;
 	}
 
@@ -48,7 +48,7 @@ public class Anonimo {
 		this.correo = correo;
 	}
 
-	public String getNick() {
+	public String getNombre() {
 		return nick;
 	}
 

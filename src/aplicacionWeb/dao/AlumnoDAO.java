@@ -40,7 +40,7 @@ public class AlumnoDAO extends DAO{
         	//insert into alumno (idalumno, nombre, Password, ano_matricula, carrera) values(747325, "eaao", "21234", 13/02/1991, 412)
             PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
-            preparedStatement.setString(1, Integer.toString(alumno.getIdAlumno()));
+            preparedStatement.setString(1, Integer.toString(alumno.getId()));
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {

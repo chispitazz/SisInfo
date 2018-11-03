@@ -15,8 +15,8 @@
 		  	<li><a href="#">Wiki</a></li>
             <% 
             
-            if(request.getAttribute("TipoConexion") != null){
-            	conectado = (int) request.getAttribute("TipoConexion");
+            if(request.getSession().getAttribute("TipoConexion") != null){
+            	conectado = (int) request.getSession().getAttribute("TipoConexion");
 				 switch (conectado){
 				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
 					break;

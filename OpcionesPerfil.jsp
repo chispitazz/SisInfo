@@ -13,7 +13,7 @@
 		<a href="EditarPerfil.html">Editar perfil</a>
 		 <% 
             
-            if(request.getAttribute("TipoConexion") != null){
+            if(request.getSession().getAttribute("TipoConexion") != null){
             	conectado = (int) request.getSession().getAttribute("TipoConexion");
 				 switch (conectado){
 				 case 3: 	out.print("<a href=\"verEntregas.html\">Ver carteles entregados</a>");
@@ -25,7 +25,8 @@
 		 					out.print("<a href=\"RealizarEntrega.html\">Entregar trabajo</a>");
 		 					/*out.print("<a href=\"AddNoticia.html\">Publicar noticia</a>");*/
 		 					/*out.print("<a href=\"AddAlumno.html\">Añadir alumnos</a>");*/
-				 case 1:	out.print("<a href=\"#\">Ver Ranking");
+ 					break;
+				 case 1:	out.print("<a href=\"#\">Ver Ranking</a>");
 	            	break;
 	            default:
 	            		response.sendRedirect("Acceso");

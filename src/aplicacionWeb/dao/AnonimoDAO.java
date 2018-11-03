@@ -40,7 +40,7 @@ public class AnonimoDAO extends DAO{
           //  preparedStatement.setInt(i++,Anonimo.getIdAnonimo());
             preparedStatement.setInt(i++, Anonimo.getAnyoNacimiento()); 
             preparedStatement.setString(i++, Anonimo.getCorreo());
-            preparedStatement.setString(i++,Anonimo.getNick());
+            preparedStatement.setString(i++,Anonimo.getNombre());
             preparedStatement.setString(i++,Anonimo.getOcupacion());
             preparedStatement.setInt(i++,Anonimo.getPuntos());
             preparedStatement.setString(i++,Anonimo.getPass());

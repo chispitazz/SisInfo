@@ -1,6 +1,6 @@
 package aplicacionWeb.vo;
 
-public class Alumno extends PersonalUniversitario{
+public class Alumno extends PersonalUniversitario implements Usuario{
 	private int carrera;
 	private int grupo;
 	private int anyoMatricula;
@@ -23,10 +23,9 @@ public class Alumno extends PersonalUniversitario{
 		this.carrera = carrera;		
 		this.grupo = grupo;
 		this.anyoMatricula = anyoMatricula;
-		
 	}
 	
-	public int getIdAlumno() {
+	public int getId() {
 		return idAlumno;
 	}
 	public void setIdAlumno(int idAlumno) {
