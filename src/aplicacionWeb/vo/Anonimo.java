@@ -99,6 +99,6 @@ public class Anonimo implements Usuario{
 	public void verRanking(){}
 
 	public boolean verificarAnonimo(String nick, String pass) {
-		return this.nick.equals(nick) && VA.verificarPassword(this.pass, pass);
+		return this.nick.equals(nick) && VA.verificarPassword(pass,this.pass);
 	}
 }

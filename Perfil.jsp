@@ -46,10 +46,11 @@
 		<br>
 		<h3><%=u.getCorreo() %></h3>
 		<br>
+		
 		<%switch(conectado){
 		case 3: 
 			out.println("<h3>" + ((Profesor) u).getDepartamento() + "</h3><br>" + 
-					"<h3>" + ((Profesor) u).getDespacho() +"</h3><br>" +"<h3>" + ((Profesor) u).getSitioWeb() +"</h3><br>");
+					"<h3>" + ((Profesor) u).getDespacho() +"</h3><br>" +"<h3><a>" + ((Profesor) u).getSitioWeb() +"</a></h3><br>");
 			break;
 		case 2: 
 			out.println("<h3>" + ((Alumno) u).getCarrera() + "\t\t" + ((Alumno) u).getAnyoMatricula() + "</h3><br>" + 
@@ -61,9 +62,6 @@
 		}
 		
 		%>
-
-		
-		<h3>Sitio web/redes sociales</h3>		
 	</div>
 
 </div>
