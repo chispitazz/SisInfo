@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body> 
  	<div id="Menu">
 		<ul>
             <li><a href="index.html">Noticias</a></li>
@@ -27,7 +27,17 @@
 			<h2>Título</h2> <textarea id="titulo"></textarea><br>
 			<h2>Información</h2> <textarea id="info"></textarea><br>
 			<h2>Pregunta</h2> <textarea id="pregunta"></textarea><br><br>
-			<h2>Respuestas</h2> <textarea id="respuestas" placeholder= "Opción1;Opción2;Opción3;..."></textarea><br><br>
+			<!--<h2>Opciones</h2> <textarea id="opciones" placeholder = "Opción1;Opción2;Opción3;Opción4"></textarea><br><br>-->
+			<h2>Opciones</h2>
+				Marque aquellas opciones que sean la respuesta correcta. <br>
+				<input type = "text" id = "opcion1" placeholder = "Opción 1" size = 100> 
+					<input type = "checkbox" id = "correcta" value = "1"> <br>
+				<input type = "text" id = "opcion2" placeholder = "Opción 2" size = 100> 
+					<input type = "checkbox" id = "correcta" value = "2"> <br>
+				<input type = "text" id = "opcion3" placeholder = "Opción 3" size = 100> 
+					<input type = "checkbox" id = "correcta" value = "3"> <br>
+				<input type = "text" id = "opcion4" placeholder = "Opción 4" size = 100> 
+					<input type = "checkbox" id = "correcta" value = "4"> <br>
 			<h2>Reto</h2> <textarea id="reto"></textarea><br><br>
 			<input type="submit" value="Entregar">
 			<input type="submit" value="Cancelar">

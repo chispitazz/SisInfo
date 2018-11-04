@@ -12,7 +12,7 @@ import java.util.List;
 import aplicacionWeb.vo.Cartel;
 import aplicacionWeb.vo.Pregunta;
 
-public class CartelDAO {
+public class CartelDAO extends DAO {
 	Connection con=null;
 	
 	public Connection getConnection() {

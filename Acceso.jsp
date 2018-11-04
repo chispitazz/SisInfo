@@ -25,9 +25,12 @@
       	  </section>
         </div>
         <div class="subi">
-        <% if (request.getAttribute("IntentosConnect") != null){
+        <% if (request.getAttribute("IntentosConnect") == (Object) 1){
         	 out.println("<p> No se ha podido verificar usuario. <br>Error en correo o contraseña</p>"); 	
       	  }
+        else if (request.getAttribute("IntentosConnect") == (Object) 2) {
+        	out.println("<p> Por favor, identificate para acceder </p>");
+        }
              
         %>
          <input type="submit" name="submit" id="submit" value="Acceder">

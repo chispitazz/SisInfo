@@ -6,7 +6,7 @@ import aplicacionWeb.vo.Pregunta;
 
 public class ListaNoticiasDAO extends DAO{
 	private List<Pregunta> noticias;
-	//TODO: ESTO NO ES EL DAO DEL QUIZ!!!!!!!!!
+	//TODO: ESTO NO ES EL DAO DEL QUIZ
 	//Constructor vacío
 	ListaNoticiasDAO() {
 		this.noticias = new ArrayList<Pregunta>();
