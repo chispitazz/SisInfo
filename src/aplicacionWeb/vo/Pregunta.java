@@ -37,7 +37,7 @@ public class Pregunta {
 	//No se considera cambiar las opciones, ni la respuesta
 	
 	//Obtener opciones
-	List<String> getOpciones (){
+	public List<String> getOpciones(){
 		return this.opciones;
 	}
 	
