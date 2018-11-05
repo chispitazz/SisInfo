@@ -67,7 +67,7 @@ public class Entregar extends HttpServlet {
 	protected void errores (HttpServletRequest request, HttpServletResponse response, int tipo ) {
 		request.setAttribute("TipoError", tipo);
 		try {
-			request.getRequestDispatcher("/RealizarEntrega.jsp").forward(request, response);
+			request.getRequestDispatcher("/Entregar").forward(request, response);
 		} catch (ServletException | IOException e) {
 			System.out.println("Excepcion Acceso.jsp con errores " + e.getMessage());
 		}

@@ -15,19 +15,6 @@ import aplicacionWeb.vo.Pregunta;
 public class CartelDAO extends DAO {
 	Connection con=null;
 	
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			if(con==null) 
-				con=DriverManager.getConnection("jdbc:mysql://localhost"); //no se como es
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
-	
 	public void insertarCartel(Cartel cartel) {
         try {
         	//Cambiar insert por el de la tabla correcto
@@ -68,20 +55,5 @@ public class CartelDAO extends DAO {
 	            }
 	            System.out.println(carteles);
 	            return carteles;
-	    }
-	
-	
-	
-	
-    public void closeConnection(){
-        try {
-              if (con != null) {
-                  con.close();
-              }
-            } catch (Exception e) { 
-                //no hacer nada
-            }
-    }
-	
-	
+	    }	
 }
