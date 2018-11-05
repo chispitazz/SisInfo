@@ -1,5 +1,7 @@
 package Serlvets;
 
+import java.util.List;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -51,6 +53,26 @@ public class Entregar extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param tipo Indica el tipo de error que se ha dado:
+	 * 				1 = No hay titulo
+	 * 				2 = No hay informacion
+	 * 				3 = No hay pregunta
+	 * 				4 = Faltan opciones
+	 * 				5 = No hay reto
+	 */
+	protected void errores (HttpServletRequest request, HttpServletResponse response, int tipo ) {
+		request.setAttribute("TipoError", tipo);
+		try {
+			request.getRequestDispatcher("/RealizarEntrega.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			System.out.println("Excepcion Acceso.jsp con errores " + e.getMessage());
+		}
+	}
+	
 	/** 
 	 * Permite almacenar la información y realizar la entrega de un cartel si hay un usuario
 	 * registrado, existe en la base de datos, es un alumno y la información ha sido rellenada
@@ -64,63 +86,91 @@ public class Entregar extends HttpServlet {
 		//			response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession hs = request.getSession();
 		Alumno alumno = null;
-		if( hs.getAttribute("TipoConexion") != (Object) alumno.tipoConect() ) {
+		if( (int) hs.getAttribute("TipoConexion") != alumno.tipoConect() ) {
 			//La sesión actual, si la hay, no es de tipo alumno 
 			noSesion(request, response);
-		}else {
-			//La sesion es de tipo alumno
-			String 
-			//Existe usuario y contraseña. 
-			String correo = (String) request.getParameter("usuario");
-			String[] tokens = correo.split("@");
-			
-			if(tokens[0] == null) {
-				//usuario mal insertado
-				//Redireccion a Accesor ERROR
-				noSesion(request, response);
-			}else {
-				try {
-					//Buscar en BBDD
-					String ps =  (String) request.getParameter("password");
-					System.out.println("input Password = " + (String) request.getParameter("password"));
-					Alumno alumno = null;
-					Profesor profesor = null;
-					Anonimo anonimo = null;
-					if(tokens.length > 1 && tokens[1].equals("unizar.es")) {
-						alumno = new AlumnoDAO().buscarAlumnoID(tokens[0]);
-						profesor = new ProfesorDAO().buscarProfesorID(correo);
-					}else {
-						anonimo = new AnonimoDAO().buscarAnonimoID(correo);
-					}
-					if(alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), ps)) {
-						//Si es alumno
-						hs.setAttribute("Alumno", alumno);
-						hs.setAttribute("TipoConexion", alumno.tipoConect());
-						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
-						
-					}else if( profesor!=null && profesor.verificarProfesor(correo, ps)){
-						// Si es profesor
-						hs.setAttribute("Profesor", profesor);
-						hs.setAttribute("TipoConexion", profesor.tipoConect());
-						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
-						
-					}else if( anonimo !=null && anonimo.verificarAnonimo(correo, ps)){
-						//Si es anonimo
-						hs.setAttribute("Anonimo", anonimo);
-						hs.setAttribute("TipoConexion", anonimo.tipoConect());
-						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
-					}else {
-						noSesion(request, response);
-					}
-				} catch (SQLException e) {
-					System.out.println("SQL EXCEPTION: " + e.getMessage() + " " + e.getErrorCode());
-					noSesion(request, response);
-				}
-				
-			}
 		}
-	
+		else {
+			//La sesion es de tipo alumno
+			String titulo = "";
+			String texto = "";
+			String reto = "";
+			String pregunta = "";
+			String opcionI = "";
+			String opcionII = "";
+			String opcionIII = "";
+			String opcionIV = "";
+			String respuesta = "";
+			//Se dan valores a los atributos utilizados
+			//Dar valor a título
+			if (request.getParameter("title") != null) {
+				titulo = (String) request.getParameter("title");
+			}
+			else {
+				errores(request, response, 1);
+			}
+			//Dar valor al texto
+			if (request.getParameter("information") != null) {
+				titulo = (String) request.getParameter("information");
+			}
+			else {
+				errores(request, response, 2);
+			}
+			//Dar valor a la pregunta
+			if (request.getParameter("quest") != null) {
+				titulo = (String) request.getParameter("quest");
+			}
+			else {
+				errores(request, response, 3);
+			}
+			//Dar valor a las opciones
+			int preguntas = 0;
+			if (request.getParameter("opt1") != null) {
+				opcionI = request.getParameter("opt1");
+				preguntas++;
+			}
+			if (request.getParameter("opt2") != null) {
+				opcionII = request.getParameter("opt2");
+				preguntas++;
+			}
+			if (request.getParameter("opt3") != null) {
+				opcionIII = request.getParameter("opt3");
+				preguntas++;
+			}
+			if (request.getParameter("opt4") != null) {
+				opcionIV = request.getParameter("opt4");
+				preguntas++;
+			}
+			//Si no hay más de dos opciones, error
+			if (preguntas < 2) {
+				errores(request, response, 4);
+			}
+			//Asignar valor a respuesta
+			if (request.getParameter("corr1") != null) {
+				respuesta = opcionI;
+			}
+			else if (request.getParameter("corr2") != null) {
+				respuesta = opcionII;
+			}
+			else if (request.getParameter("corr3") != null) {
+				respuesta = opcionIII;
+			}
+			else if (request.getParameter("corr4") != null) {
+				respuesta = opcionIV;
+			}			
+			//Asginar valor al reto
+			if (request.getParameter("deal") != null) {
+				reto = request.getParameter("deal");
+			}
+			else {
+				errores(request, response, 5);
+			}
+			
+			//Crear los objetos y subirlos a la base de datos
+			Pregunta preg = new Pregunta(pregunta, respuesta, opcionI, opcionII, opcionIII, opcionIV);
+			Cartel cartel = new Cartel(titulo, texto, reto);
+			cartel.setPregunta(preg);
+		}
 	}
-    
 	
 }
