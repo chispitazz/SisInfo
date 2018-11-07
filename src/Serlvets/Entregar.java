@@ -84,13 +84,13 @@ public class Entregar extends HttpServlet {
 		// TODO Auto-generated
 		// Auto generado, Que hace getwriter? 	
 		//			response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession hs = request.getSession();
-		Alumno alumno = null;
-		if( (int) hs.getAttribute("TipoConexion") != alumno.tipoConect() ) {
+		//HttpSession hs = request.getSession();
+		//Alumno alumno = null;
+		/*if( (int) hs.getAttribute("TipoConexion") != alumno.tipoConect() ) {
 			//La sesión actual, si la hay, no es de tipo alumno 
 			noSesion(request, response);
 		}
-		else {
+		else {*/
 			//La sesion es de tipo alumno
 			String titulo = "";
 			String texto = "";
@@ -146,16 +146,16 @@ public class Entregar extends HttpServlet {
 				errores(request, response, 4);
 			}
 			//Asignar valor a respuesta
-			if (request.getParameter("corr1") != null) {
+			if (request.getParameter("corr1") != null && (opcionI.length() > 0)) {
 				respuesta = opcionI;
 			}
-			else if (request.getParameter("corr2") != null) {
+			else if (request.getParameter("corr2") != null && (opcionII.length() > 0)) {
 				respuesta = opcionII;
 			}
-			else if (request.getParameter("corr3") != null) {
+			else if (request.getParameter("corr3") != null && (opcionIII.length() > 0)) {
 				respuesta = opcionIII;
 			}
-			else if (request.getParameter("corr4") != null) {
+			else if (request.getParameter("corr4") != null && (opcionIV.length() > 0)) {
 				respuesta = opcionIV;
 			}			
 			//Asginar valor al reto
@@ -170,7 +170,7 @@ public class Entregar extends HttpServlet {
 			Pregunta preg = new Pregunta(pregunta, respuesta, opcionI, opcionII, opcionIII, opcionIV);
 			Cartel cartel = new Cartel(titulo, texto, reto);
 			cartel.setPregunta(preg);
-		}
+		//}
 	}
 	
 }

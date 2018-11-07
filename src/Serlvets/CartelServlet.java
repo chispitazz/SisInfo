@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Cartel
  */
 @WebServlet("/Cartel")
-public class Cartel extends HttpServlet {
+public class CartelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Cartel() {
+    public CartelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
