@@ -12,7 +12,7 @@ import aplicacionWeb.vo.Alumno;
 /**
  * Servlet implementation class Acceso
  */
-@WebServlet("/Acceso")
+@WebServlet("/addAlumno")
 public class AddAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class AddAlumno extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 
-
+/*
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 	throws IOException, ServletException {
 		
@@ -69,5 +69,5 @@ public class AddAlumno extends HttpServlet {
 				request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
 			}
 	}
-
+*/
 }
