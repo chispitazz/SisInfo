@@ -9,13 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 import aplicacionWeb.vo.CartelResumen;
 
-public class CartelResumenDAO {
-	Connection con=null;
+public class CartelResumenDAO extends DAO{
 	
 	public void insertarCartelResumen(CartelResumen cartelR) {
         try {
         	//Cambiar insert por el de la tabla correcto
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
+            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //
             preparedStatement.setString(1, Integer.toString(cartelR.getIdCartel()));
             preparedStatement.executeUpdate();
@@ -25,20 +24,17 @@ public class CartelResumenDAO {
         }
 	}
 	
-	 public List<CartelResumen> select() {
+	 public List<CartelResumen> listaResumenes() {
 	        List<CartelResumen> cartelesR = new LinkedList<CartelResumen>();
 	         try {
-	                Statement statement = con.createStatement();
+	                Statement statement = mysql.crearSentencia();
 	                //Introducir select correcto
-	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
-	                 
+	                ResultSet resultSet = statement.executeQuery("SELECT idCarteles, grupo_autor, Titulo, Nota, Votos, FechaPublicacion, Tema, FROM carteles LIMIT 100"); 
+	                
 	                CartelResumen cartelR = null;
 	                while(resultSet.next()){
-	                	//(int group, int bloque, String theme, String title)
-	                    cartelR = new CartelResumen(Integer.parseInt(resultSet.getString("grupo")),
-	                    		Integer.parseInt(resultSet.getString("bloque")),
-	                    		resultSet.getString("tema"),resultSet.getString("titulo"),
-	                    		Integer.parseInt(resultSet.getString("idCartel")));
+	                    cartelR = new CartelResumen(resultSet.getInt("grupo_autor"), resultSet.getString("tema"), resultSet.getInt("Nota"), 
+	                    		resultSet.getString("Titulo"), resultSet.getInt("idCarteles"), resultSet.getDate("FechaPublicacion"));
 	                    cartelesR.add(cartelR);   
 
 	                }

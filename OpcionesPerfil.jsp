@@ -21,11 +21,11 @@
             if(request.getSession().getAttribute("Usuario") != null){
             	conectado = ((Usuario)request.getSession().getAttribute("Usuario")).tipoConect();
 				 switch (conectado){
-				 case 3: 	out.print("<a href=\"verEntregas.html\">Ver carteles entregados</a>");
+				 case 3: 	out.print("<a href=\"verEntregas\">Ver carteles entregados</a>");
 				 			out.print("<a href=\"AddNoticia.html\">Publicar noticia</a>");
 				 			/*out.print("<a href=\"RealizarEntrega.html\">Publicar cartel</a>");*/
 				 			out.print("<a href=\"AddAlumno.html\">Añadir alumnos</a>");
-				 			if(((Profesor) request.getSession().getAttribute("Profesor")).isAdministrador()){
+				 			if(((Profesor) request.getSession().getAttribute("Usuario")).isAdministrador()){
 				 				out.print("<a href=\"AddProfesor.html\">Añadir Profesor</a>");
 				 			}
 					break;

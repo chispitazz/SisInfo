@@ -1,42 +1,41 @@
 package aplicacionWeb.vo;
 
+import java.sql.Date;
+
 public class CartelResumen {
-	private Integer grupo;
-	private int bloqueEntrega;
+	private int grupo;
 	private int votos;
 	private String titulo;
 	private String tema;
 	private boolean evaluado;
 	private boolean publicado;
-	private Integer idCartel;
+	private Date fechaPuclicacion;
+	private int idCartel;
 	
 	//Constructor vacío
 	CartelResumen () {	
 	}
 	
 	//Constructor para cartel nuevo
-	public CartelResumen(int group, int bloque, String theme, String title, Integer idCartel) {
+	public CartelResumen(int group,  String theme, int nota, 
+			String title, int idCartel, Date fecha) {
 		this.grupo = group;
-		this.bloqueEntrega = bloque;
 		this.votos = 0;
 		this.tema = theme;
 		this.titulo = title;
-		this.evaluado = false;
-		this.publicado = false;	
+		this.evaluado = nota>=0;
+		
+		if(fecha != null) {
+			this.setFechaPuclicacion(fecha);
+			this.publicado = fecha.compareTo(new java.util.Date()) <=0;
+		}
+			
 		this.idCartel=idCartel;
 	}
 	
 
 
-	public int getBloqueEntrega() {
-		return bloqueEntrega;
-	}
-
-	public void setBloqueEntrega(int bloqueEntrega) {
-		this.bloqueEntrega = bloqueEntrega;
-	}
-
-	public Integer getIdCartel() {
+	public int getIdCartel() {
 		return idCartel;
 	}
 
@@ -44,7 +43,7 @@ public class CartelResumen {
 		this.idCartel = idCartel;
 	}
 
-	public void setGrupo(Integer grupo) {
+	public void setGrupo(int grupo) {
 		this.grupo = grupo;
 	}
 
@@ -65,15 +64,10 @@ public class CartelResumen {
 	}
 
 	//Obtener grupo
-	public Integer getGrupo() {
+	public int getGrupo() {
 		return this.grupo;
 	}
-	
-	//Obtener bloque entrega
-	int getBloque () {
-		return this.bloqueEntrega;
-	}
-	
+
 	//Modificar votos
 	//Pone evaluado = true y 
 	//Si suma -> suma vote a lo previo
@@ -134,6 +128,14 @@ public class CartelResumen {
 	//Obtener publicado
 	boolean getPublicado () {
 		return this.publicado;
+	}
+
+	public Date getFechaPuclicacion() {
+		return fechaPuclicacion;
+	}
+
+	public void setFechaPuclicacion(Date fechaPuclicacion) {
+		this.fechaPuclicacion = fechaPuclicacion;
 	}
 	
 		
