@@ -22,9 +22,9 @@
 	//Declaración de variables globales
 	
 %>
-<!-- 
+ 
 <%
-	/*	System.out.println("Estoy en el JSP");
+		System.out.println("Estoy en el JSP");
 		ListaNoticias noticias = (ListaNoticias) request.getAttribute("Noticas");
 
 		if(noticias != null){
@@ -38,7 +38,7 @@
 						+ "</div></article>");
 		
 		}
-	}*/
-%> -->
+	}
+%>
 </body>
 </html>
