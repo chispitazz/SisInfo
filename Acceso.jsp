@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<%@ include file="menuPral.jsp" %>
+<jsp:include page="menuPral.jsp" flush="true"/>
 
 	<form action="Login" method="post">
 	 <div class="columnas">

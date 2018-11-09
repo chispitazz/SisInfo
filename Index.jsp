@@ -18,6 +18,20 @@
 </head>
 <jsp:include page="menuPral.jsp" flush="false"/>
 <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> a1d78b088fa671846c90246bda0244be8b1ecba1
+=======
+>>>>>>> a1d78b088fa671846c90246bda0244be8b1ecba1
+=======
+>>>>>>> a1d78b088fa671846c90246bda0244be8b1ecba1
+<jsp:include page="menuPral.jsp" flush="true"/>
+=======
+>>>>>>> a49c46f60c8e654a5135357ac1235cb7dfbb92d5
 <%! 
 	//Declaración de variables globales
 	

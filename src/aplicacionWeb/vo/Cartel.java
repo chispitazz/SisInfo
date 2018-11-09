@@ -5,17 +5,19 @@ public class Cartel {
 	private String texto;
 	private String reto;
 	private Pregunta pregunta;
+	private int id;
 	
 	//Constructor cartel vacío
 	public Cartel() {
 	}
 	
 	//Constructor cartel sin pregunta
-	public Cartel(String title, String txt, String rt) {
+	public Cartel(String title, String txt, String rt, int id) {	//add ID
 		this.titulo = title;
 		this.texto = txt;
 		this.reto = rt;
 		this.pregunta = new Pregunta();
+		this.id=id;
 	}
 	
 	//Poner pregunta
@@ -46,6 +48,11 @@ public class Cartel {
 	//Obtener pregunta
 	public Pregunta getPregunta() {
 		return this.pregunta;
+	}
+	
+	// Obtener id
+	public int getId() {
+		return this.id;
 	}
 	
 
