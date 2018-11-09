@@ -16,14 +16,15 @@
 <link href="./css/style.css" rel="stylesheet" type="text/css">
 <link href="./css/IndexStyle.css" rel="stylesheet" type="text/css">
 </head>
+<jsp:include page="menuPral.jsp" flush="false"/>
 <body>
-<jsp:include page="menuPral.jsp" flush="true"/>
 <%! 
 	//Declaración de variables globales
-
+	
 %>
+<!-- 
 <%
-		System.out.println("Estoy en el JSP");
+	/*	System.out.println("Estoy en el JSP");
 		ListaNoticias noticias = (ListaNoticias) request.getAttribute("Noticas");
 
 		if(noticias != null){
@@ -37,7 +38,7 @@
 						+ "</div></article>");
 		
 		}
-	}
-%>
+	}*/
+%> -->
 </body>
 </html>

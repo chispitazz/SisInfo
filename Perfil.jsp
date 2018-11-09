@@ -13,8 +13,8 @@
 %>
 
 <% if(request.getSession().getAttribute("Usuario") != null){
-            	conectado = ((Usuario) request.getSession().getAttribute("TipoConexion")).tipoConect();
             	u = (Usuario) request.getSession().getAttribute("Usuario");
+            	conectado = u.tipoConect();
 }else{
 	request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
             	
@@ -29,9 +29,9 @@
 </head>
 
 <body>
-<jsp:include page="menuPral.jsp" flush="true"/>
+<jsp:include page="menuPral.jsp" flush="false"/>
 <main class="mainPerfil">
-<jsp:include page="OpcionesPerfil.jsp" flush="true"/>
+<jsp:include page="OpcionesPerfil.jsp" flush="false"/>
 <div class="content">
 	<section class="imagenContent" >
 		<img src="./css/imagenes/perfil.png" alt="Foto de Perfil" width="100" height="100">

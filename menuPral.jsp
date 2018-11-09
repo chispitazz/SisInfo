@@ -4,7 +4,6 @@
 <head>
 <meta charset="utf-8">
 <link href="./css/style.css" rel="stylesheet" type="text/css">
-<link href="./css/IndexStyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <%! int conectado = 0;%>
@@ -15,8 +14,8 @@
           	<li><a href="Carteles.html">Carteles</a></li>
 		  	<li><a href="#">Wiki</a></li>
             <% 
-            
-            if(request.getSession().getAttribute("Usuario") != null){
+  
+            if(request.getSession() != null && request.getSession().getAttribute("Usuario") != null){
             	conectado = ((Usuario) request.getSession().getAttribute("Usuario")).tipoConect();
 				 switch (conectado){
 				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
@@ -26,7 +25,7 @@
 	            default:
 				}
             }
-         	%>
+           	%>
             
         </ul>
         <ul class="last">
