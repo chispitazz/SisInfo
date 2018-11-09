@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="aplicacionWeb.vo.Usuario"%>
 <%@ page language="java" 
 	contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  
@@ -17,8 +18,8 @@
 		<a href="EditarPerfil.html">Editar perfil</a>
 		 <% 
             
-            if(request.getSession().getAttribute("TipoConexion") != null){
-            	conectado = (int) request.getSession().getAttribute("TipoConexion");
+            if(request.getSession().getAttribute("Usuario") != null){
+            	conectado = ((Usuario)request.getSession().getAttribute("Usuario")).tipoConect();
 				 switch (conectado){
 				 case 3: 	out.print("<a href=\"verEntregas.html\">Ver carteles entregados</a>");
 				 			out.print("<a href=\"AddNoticia.html\">Publicar noticia</a>");

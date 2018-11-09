@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Acceso
+ * Servlet implementation class verEntregas
  */
-@WebServlet("/Acceso")
-public class Acceso extends HttpServlet {
+@WebServlet("/verEntregas")
+public class verEntregas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Acceso() {
+    public verEntregas() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,24 +27,18 @@ public class Acceso extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		doPost(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		if(request.getSession().getAttribute("Usuario") != null){
-			request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
-			}else {
-				if(request.getAttribute("IntentosConnect") != null) {
-					request.setAttribute("IntentosConnect", (int)request.getAttribute("IntentosConnect")+1);
-				}
-				request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
-			}
+		
+		HttpSession hs = request.getSession();
+		
+		
 	}
 
 }

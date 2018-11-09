@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="aplicacionWeb.vo.Usuario"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -15,8 +16,8 @@
 		  	<li><a href="#">Wiki</a></li>
             <% 
             
-            if(request.getSession().getAttribute("TipoConexion") != null){
-            	conectado = (int) request.getSession().getAttribute("TipoConexion");
+            if(request.getSession().getAttribute("Usuario") != null){
+            	conectado = ((Usuario) request.getSession().getAttribute("Usuario")).tipoConect();
 				 switch (conectado){
 				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
 					break;
@@ -25,7 +26,7 @@
 	            default:
 				}
             }
-            	%>
+         	%>
             
         </ul>
         <ul class="last">

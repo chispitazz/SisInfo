@@ -17,7 +17,7 @@
 <link href="./css/IndexStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%@ include file="menuPral.jsp" %>
+<jsp:include page="menuPral.jsp" flush="true"/>
 <%! 
 	//Declaración de variables globales
 
