@@ -35,10 +35,8 @@ public class Acceso extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if(request.getSession().getAttribute("Profesor") != null 
-			|| request.getSession().getAttribute("Alumno") != null 
-			|| request.getSession().getAttribute("Anonimo") != null){
+
+		if(request.getSession().getAttribute("Usuario") != null){
 			request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 			}else {
 				if(request.getAttribute("IntentosConnect") != null) {

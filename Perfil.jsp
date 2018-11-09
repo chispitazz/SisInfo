@@ -6,6 +6,20 @@
     import="aplicacionWeb.dao.NoticiaDAO" 
     import = "aplicacionWeb.vo.*"
     import="java.sql.SQLException" %>
+ 
+
+<%! int conectado = 0;
+	Usuario u;
+%>
+
+<% if(request.getSession().getAttribute("Usuario") != null){
+            	conectado = ((Usuario) request.getSession().getAttribute("TipoConexion")).tipoConect();
+            	u = (Usuario) request.getSession().getAttribute("Usuario");
+}else{
+	request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
+            	
+}%>
+    
 <html>
 <head>
 <meta charset="utf-8">
@@ -16,24 +30,6 @@
 
 <body>
 <jsp:include page="menuPral.jsp" flush="true"/>
-
-<%! int conectado = 0;
-	Usuario u;
-%>
-
-<% if(request.getSession().getAttribute("TipoConexion") != null){
-            	conectado = (int) request.getSession().getAttribute("TipoConexion");
-            	switch(conectado){
-	        		case 3: u = (Usuario) request.getSession().getAttribute("Profesor");
-	        			break;
-	        		case 2:  u = (Usuario) request.getSession().getAttribute("Alumno");
-	        			break;
-	        		case 1: u = (Usuario) request.getSession().getAttribute("Anonimo");
-	        			break;
-	        		default:
-            	}
-            	
-}%>
 <main class="mainPerfil">
 <jsp:include page="OpcionesPerfil.jsp" flush="true"/>
 <div class="content">

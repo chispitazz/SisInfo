@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<%@ include file="menuPral.jsp" %>
+<jsp:include page="menuPral.jsp" flush="true"/>
 
 	<form action="Login" method="post">
 	 <div class="columnas">
@@ -26,7 +26,7 @@
         </div>
         <div class="subi">
         <% if ( request.getAttribute("IntentosConnect") == (Object) 1){
-        	 out.println("<p> No se ha podido verificar usuario. <br>Error en correo o contraseÃ±a</p>"); 	
+        	 out.println("<p> No se ha podido verificar usuario. <br>Error en correo o contraseña</p>"); 	
       	  }
         else if ( request.getAttribute("IntentosConnect") == (Object) 2) {
         	out.println("<p> Por favor, identificate para acceder </p>");

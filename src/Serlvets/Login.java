@@ -57,6 +57,9 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		// Auto generado, Que hace getwriter? 	
 		//			response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getSession().getAttribute("Usuario") != null) {
+			request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
+		}
 		HttpSession hs = request.getSession();
 		if(request.getParameter("usuario") == null || request.getParameter("password") == null) {
 			errorConect(request, response);
@@ -85,19 +88,19 @@ public class Login extends HttpServlet {
 					}
 					if(alumno!=null && alumno.verificarAlumno(Integer.parseInt(tokens[0]), ps)) {
 						//Si es alumno
-						hs.setAttribute("Alumno", alumno);
+						hs.setAttribute("Usuario", alumno);
 						hs.setAttribute("TipoConexion", alumno.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 						
 					}else if( profesor!=null && profesor.verificarProfesor(correo, ps)){
 						// Si es profesor
-						hs.setAttribute("Profesor", profesor);
+						hs.setAttribute("Usuario", profesor);
 						hs.setAttribute("TipoConexion", profesor.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 						
 					}else if( anonimo !=null && anonimo.verificarAnonimo(correo, ps)){
 						//Si es anonimo
-						hs.setAttribute("Anonimo", anonimo);
+						hs.setAttribute("Usuario", anonimo);
 						hs.setAttribute("TipoConexion", anonimo.tipoConect());
 						request.getRequestDispatcher("/Perfil.jsp").forward(request, response);
 					}else {

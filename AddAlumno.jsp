@@ -16,7 +16,7 @@
 <link href="./css/PerfilStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%@ include file= "menuPral.jsp" %>
+<jsp:include page="menuPral.jsp" flush="true"/>
 <%!  Alumno a; %>
 <main class="mainPerfil">
 <div class="sidenav">

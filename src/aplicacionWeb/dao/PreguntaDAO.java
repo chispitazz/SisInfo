@@ -45,7 +45,7 @@ public class PreguntaDAO {
 	         try {
 	                Statement statement = con.createStatement();
 	                //Introducir select correcto
-	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
+	                ResultSet resultSet = statement.executeQuery("SELECT * FROM retosecologicos.preguntas"); 
 	                 
 	                Pregunta pregunta = null;
 	                while(resultSet.next()){
