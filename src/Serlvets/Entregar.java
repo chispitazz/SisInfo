@@ -103,21 +103,24 @@ public class Entregar extends HttpServlet {
 			String respuesta = "";
 			//Se dan valores a los atributos utilizados
 			//Dar valor a título
-			if (request.getParameter("title") != null) {
+			if (request.getParameter("title") != null && 
+					!request.getParameter("title").equals("")) {
 				titulo = (String) request.getParameter("title");
 			}
 			else {
 				errores(request, response, 1);
 			}
 			//Dar valor al texto
-			if (request.getParameter("information") != null) {
+			if (request.getParameter("information") != null &&
+					!request.getParameter("information").equals("")) {
 				titulo = (String) request.getParameter("information");
 			}
 			else {
 				errores(request, response, 2);
 			}
 			//Dar valor a la pregunta
-			if (request.getParameter("quest") != null) {
+			if (request.getParameter("quest") != null &&
+					!request.getParameter("quest").equals("")) {
 				titulo = (String) request.getParameter("quest");
 			}
 			else {
@@ -125,19 +128,23 @@ public class Entregar extends HttpServlet {
 			}
 			//Dar valor a las opciones
 			int preguntas = 0;
-			if (request.getParameter("opt1") != null) {
+			if (request.getParameter("opt1") != null &&
+					request.getParameter("opt1").equals("")) {
 				opcionI = request.getParameter("opt1");
 				preguntas++;
 			}
-			if (request.getParameter("opt2") != null) {
+			if (request.getParameter("opt2") != null &&
+					request.getParameter("opt2").equals("")) {
 				opcionII = request.getParameter("opt2");
 				preguntas++;
 			}
-			if (request.getParameter("opt3") != null) {
+			if (request.getParameter("opt3") != null &&
+					request.getParameter("opt3").equals("")) {
 				opcionIII = request.getParameter("opt3");
 				preguntas++;
 			}
-			if (request.getParameter("opt4") != null) {
+			if (request.getParameter("opt4") != null &&
+					request.getParameter("opt4").equals("")) {
 				opcionIV = request.getParameter("opt4");
 				preguntas++;
 			}
@@ -159,7 +166,8 @@ public class Entregar extends HttpServlet {
 				respuesta = opcionIV;
 			}			
 			//Asginar valor al reto
-			if (request.getParameter("deal") != null) {
+			if (request.getParameter("deal") != null && 
+					request.getParameter("deal").equals("")) {
 				reto = request.getParameter("deal");
 			}
 			else {
