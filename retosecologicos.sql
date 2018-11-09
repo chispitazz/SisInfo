@@ -61,6 +61,7 @@ CREATE TABLE `anonimo` (
   `Ocupacion` varchar(45) DEFAULT NULL,
   `AnoNacimiento` year(4) DEFAULT NULL,
   `Puntos` int(11) DEFAULT NULL,
+  `foto` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idAnonimo`,`Nick`),
   UNIQUE KEY `Correo_UNIQUE` (`Correo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -72,7 +73,7 @@ CREATE TABLE `anonimo` (
 
 LOCK TABLES `anonimo` WRITE;
 /*!40000 ALTER TABLE `anonimo` DISABLE KEYS */;
-INSERT INTO `anonimo` VALUES (1,'Ass','unCorreo@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0),(3,'ASS','Ass@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0),(4,'OSS','Oss@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0);
+INSERT INTO `anonimo` VALUES (1,'Ass','unCorreo@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0,NULL),(3,'ASS','Ass@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0,NULL),(4,'OSS','Oss@correo.es','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','NINI',1990,0,NULL);
 /*!40000 ALTER TABLE `anonimo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,8 +119,10 @@ CREATE TABLE `carteles` (
   `Reto` text,
   `FechaPublicacion` datetime DEFAULT NULL,
   `Votos` int(11) DEFAULT NULL,
+  `imagen` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idCarteles`,`grupo_Autor`),
   KEY `grupo_idx` (`grupo_Autor`),
+  KEY `fecha` (`FechaPublicacion`),
   CONSTRAINT `grupo` FOREIGN KEY (`grupo_Autor`) REFERENCES `grupotrabajo` (`idgrupotrabajo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -234,6 +237,7 @@ CREATE TABLE `profesor` (
   `SitioWeb` varchar(45) DEFAULT NULL,
   `Despacho` varchar(45) DEFAULT NULL,
   `Administrador` tinyint(1) NOT NULL,
+  `foto` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idProfesor`),
   UNIQUE KEY `Correo_UNIQUE` (`Correo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -245,7 +249,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
-INSERT INTO `profesor` VALUES (1,'UNO@unizar.es','Perico el de los palotes','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','ataques biologicos','unSitioWeb.com','44.0b',0);
+INSERT INTO `profesor` VALUES (1,'UNO@unizar.es','Perico el de los palotes','$31$16$eI_oFK4K_hE27_eEwB7f64j4nge4mcgWIu06_m_7ObU','ataques biologicos','unSitioWeb.com','44.0b',0,NULL);
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,6 +423,7 @@ CREATE TABLE `subtemas` (
   `ID_Cartel` int(11) NOT NULL,
   `SubTitulo` varchar(45) NOT NULL,
   `Cuerpo` text NOT NULL,
+  `imagen` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`OrdenTema`,`ID_Cartel`),
   KEY `subtitulo_De_idx` (`ID_Cartel`),
   CONSTRAINT `subtitulo_De` FOREIGN KEY (`ID_Cartel`) REFERENCES `carteles` (`idcarteles`)
@@ -451,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-03 10:57:12
+-- Dump completed on 2018-11-09 14:10:11
