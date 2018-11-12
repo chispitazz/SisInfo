@@ -1,4 +1,4 @@
-package Serlvets;
+package Servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -52,6 +52,7 @@ public class Index extends HttpServlet {
 		}else {
 			request.setAttribute("TipoConexion", 0);
 		}*/
+		System.out.println("estoy en el servlet");
 		NoticiaDAO nDAO = new NoticiaDAO();
 		try {
 			for(int i = 0; i<20 && !nDAO.conectado(); i++) {

@@ -13,13 +13,13 @@
 %>
 
 <% if(request.getSession().getAttribute("Usuario") != null){
-<<<<<<< HEAD
+
             	conectado = ((Usuario) request.getSession().getAttribute("TipoConexion")).tipoConect();
             	u = (Usuario) request.getSession().getAttribute("Usuario");
-=======
+
             	u = (Usuario) request.getSession().getAttribute("Usuario");
             	conectado = u.tipoConect();
->>>>>>> a49c46f60c8e654a5135357ac1235cb7dfbb92d5
+
 }else{
 	request.getRequestDispatcher("/Acceso.jsp").forward(request, response);
             	
@@ -34,11 +34,9 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 <jsp:include page="menuPral.jsp" flush="true"/>
-=======
-<jsp:include page="menuPral.jsp" flush="false"/>
->>>>>>> a49c46f60c8e654a5135357ac1235cb7dfbb92d5
+
 <main class="mainPerfil">
 <jsp:include page="OpcionesPerfil.jsp" flush="false"/>
 <div class="content">

@@ -1,10 +1,9 @@
 package aplicacionWeb.dao;
 
-import java.util.List;
-import java.util.LinkedList;
 import aplicacionWeb.vo.Alumno;
 
 import java.sql.*;
+import java.util.*;
 
 public class AlumnoDAO extends DAO{
 	
@@ -37,8 +36,13 @@ public class AlumnoDAO extends DAO{
 	public void insertarAlumno(Alumno alumno) {
         try {
         	//Cambiar insert por el de la tabla correcto
-        	//insert into alumno (idalumno, nombre, Password, ano_matricula, carrera) values(747325, "eaao", "21234", 13/02/1991, 412)
-            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
+        	//insert into alumno (idalumno, correo, nombre, Password, ano_matricula, Carrera) values(747325, "eaao", "21234", 13/02/1991, 412)
+            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO	retosecologicos.alumno VALUES"
+            		+ "("+Integer.toString(alumno.getId()) + ","+ alumno.getCorreo()+","+alumno.getNombre()+","
+            		+ "pass??" + "," + Integer.toString(alumno.getAnyoMatricula()) + ","
+            		+ alumno.getCarrera() +" )");
+            // falta como insertar contraseña
+            
             //
             preparedStatement.setString(1, Integer.toString(alumno.getId()));
             preparedStatement.executeUpdate();
@@ -47,21 +51,21 @@ public class AlumnoDAO extends DAO{
             e.printStackTrace();
         }
 	}
-	/*//TODO: rehacer con el nuevo DAO
+
 	 public List<Alumno> select() {
 	        List<Alumno> alumnos = new LinkedList<Alumno>();
 	         try {
-	                Statement statement = con.createStatement();
+	                Statement statement = mysql.crearSentencia();
 	                //Introducir select correcto
 	                ResultSet resultSet = statement.executeQuery("SELECT * FROM hmkcode.persons"); 
 	                 
 	                Alumno alumno = null;
 	                while(resultSet.next()){
-	                	//(String nombre, String correo, String carrera, String grupo,Integer anyoMatricula)
+	                	//String nombre, String correo, int carrera, int grupo, int anyoMatricula, String password
 	                    alumno = new Alumno(resultSet.getString("nombre"),resultSet.getString("correo"),
-	                    		resultSet.getString("carrera"),resultSet.getString("grupo"),
+	                    		Integer.parseInt(resultSet.getString("carrera")),Integer.parseInt(resultSet.getString("grupo")),
 	                    		Integer.parseInt(resultSet.getString("anyoMatricula")),
-	                    		Integer.parseInt(resultSet.getString("idAlumno")));
+	                    		resultSet.getString("Password"));
 	                    alumnos.add(alumno);   
 
 	                }
@@ -74,7 +78,7 @@ public class AlumnoDAO extends DAO{
 	            System.out.println(alumnos);
 	            return alumnos;
 	    }
-*/
+
 	
 	
 }

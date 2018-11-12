@@ -1,4 +1,4 @@
-package Serlvets;
+package Servlets;
 
 import java.util.List;
 

@@ -10,17 +10,14 @@
 
 <header id="Menu">
 		<ul class="botonesIzq">
-            <li><a href="Index">Noticias</a></li>
-          	<li><a href="Carteles.html">Carteles</a></li>
+            <li><a href="Index.jsp">Noticias</a></li>
+          	<li><a href="Carteles.jsp">Carteles</a></li>
 		  	<li><a href="#">Wiki</a></li>
             <% 
-<<<<<<< HEAD
-            
-            if(request.getSession().getAttribute("Usuario") != null){
-=======
+
   
             if(request.getSession() != null && request.getSession().getAttribute("Usuario") != null){
->>>>>>> a49c46f60c8e654a5135357ac1235cb7dfbb92d5
+
             	conectado = ((Usuario) request.getSession().getAttribute("Usuario")).tipoConect();
 				 switch (conectado){
 				 case 3: 	out.print("<li><a href=\"#\">Ver Entregas</a></li>");
@@ -30,13 +27,10 @@
 	            default:
 				}
             }
-<<<<<<< HEAD
-         	%>
-=======
+
+       
            	%>
->>>>>>> a49c46f60c8e654a5135357ac1235cb7dfbb92d5
-            
-        </ul>
+ </ul>
         <ul class="last">
         <%
         	if(conectado >0 ){

@@ -1,4 +1,4 @@
-package Serlvets;
+package Servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import aplicacionWeb.dao.CartelDAO;
-import aplicacionWeb.dao.NoticiaDAO;
-import aplicacionWeb.vo.ListaNoticias;
+import aplicacionWeb.vo.Cartel;
+import aplicacionWeb.vo.Pregunta;
 
 /**
  * Servlet implementation class Cartel
  */
-@WebServlet("/Cartel")
+@WebServlet("/Carteles")
 public class CartelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,11 +49,25 @@ public class CartelServlet extends HttpServlet {
 				CartelDAO cartelDAO= new CartelDAO();
 				
 				cartelDAO.conectarDAO();
+				try {
+					boolean conectado= cartelDAO.conectado();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
-				Cartel	c = cartelD.selectbyID(1);	// que id uso??
+				Cartel	c = cartelDAO.selectMostRecent();
+				
+				if(c == null) {
+					Pregunta p = new Pregunta("aaaaaaaaaa", "aaaaaaa", "aaa", "oa2",
+						"adsafs","opcioasdasdn4");
+					c= new Cartel("sdaggas","awegwers", "WEFDqwdsd", 1);	
+					c.setPregunta(p);
+				}
 		
 				request.setAttribute("cartel", c);
 				//redireccionar
+				request.getRequestDispatcher("/Carteles.jsp").forward(request, response);
 				
 				
 		
