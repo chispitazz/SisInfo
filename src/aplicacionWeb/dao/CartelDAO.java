@@ -8,17 +8,17 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import aplicacionWeb.vo.Alumno;
 import aplicacionWeb.vo.Cartel;
 import aplicacionWeb.vo.Pregunta;
 
 public class CartelDAO extends DAO {
-	Connection con=null;
 	
 	public void insertarCartel(Cartel cartel) {
         try {
         	//Cambiar insert por el de la tabla correcto
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
-            //
+        	
+            PreparedStatement preparedStatement = mysql.prepararSentencia("INSERT INTO hmkcode.persons (id ,name) VALUES (NULL , ?)");
             //instert id_Carteles
             preparedStatement.setString(1,  cartel.getTitulo());	//no se cual es la clave
             preparedStatement.executeUpdate();
@@ -29,9 +29,10 @@ public class CartelDAO extends DAO {
 	}
 	
 	 public List<Cartel> select() {
-	        List<Cartel> carteles = new LinkedList<Cartel>();
+		 List<Cartel> carteles = new LinkedList<Cartel>();
 	         try {
-	                Statement statement = con.createStatement();
+	                Statement statement = mysql.crearSentencia();
+	                Statement statementP = mysql.crearSentencia();
 	                //Introducir select correcto
 	                ResultSet resultSet = statement.executeQuery("SELECT * FROM retosecologicos.carteles"); 
 	                ResultSet resultSetP=null;  
@@ -44,7 +45,7 @@ public class CartelDAO extends DAO {
 	                    		resultSet.getString("Reto"),Integer.parseInt(resultSet.getString("idCarteles")));
 	                    
 	                  //seleccionear pregunta del cartel de la BD
-	                     resultSetP = statement.executeQuery("SELECT * FROM retosecologicos.preguntas WHERE id_Cartel =" 
+	                     resultSetP = statementP.executeQuery("SELECT * FROM retosecologicos.preguntas WHERE id_Cartel =" 
 	                    									+ cartel.getId() ); 
 	                    
 	                    pregunta=new Pregunta( resultSetP.getString("question"),resultSetP.getString("respuesta"),
@@ -61,6 +62,7 @@ public class CartelDAO extends DAO {
 	                resultSet.close();
 	                resultSetP.close();
 	                statement.close();
+	                statementP.close();
 	                 
 	            } catch (SQLException e) {
 	                e.printStackTrace();
@@ -72,7 +74,8 @@ public class CartelDAO extends DAO {
 	 	public Cartel selectbyID(int ID) {
 	 		Cartel c=null;
 	 		try {
-                Statement statement = con.createStatement();
+	 			 Statement statement = mysql.crearSentencia();
+	                Statement statementP = mysql.crearSentencia();
                 //Introducir select correcto
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM retosecologicos.carteles WHERE idCarteles = "
                 		+ ID); 
@@ -94,6 +97,7 @@ public class CartelDAO extends DAO {
                 resultSet.close();
                 resultSetP.close();
                 statement.close();
+                statementP.close();
                  
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -101,4 +105,39 @@ public class CartelDAO extends DAO {
 			
 	 		return c;
 	 	} 
+	 	
+	 	public Cartel selectMostRecent() {
+	 		Cartel c=null;
+	 		try {
+	 			 Statement statement = mysql.crearSentencia();
+	                Statement statementP = mysql.crearSentencia();
+                //Introducir select correcto
+                ResultSet resultSet = statement.executeQuery("SELECT idCarteles ,grupo_Autor, Titulo, texto, Reto, MAX(FechaPublicacion) FROM retosecologicos.carteles"); 
+                ResultSet resultSetP=null;  
+                Pregunta pregunta=null;
+                
+                c = new Cartel(resultSet.getString("Titulo"),resultSet.getString("Texto"),
+                		resultSet.getString("Reto"),Integer.parseInt(resultSet.getString("idCarteles")));
+                
+                resultSetP = statement.executeQuery("SELECT * FROM retosecologicos.preguntas WHERE id_Cartel =" 
+						+ c.getId() ); 
+
+				pregunta=new Pregunta( resultSetP.getString("question"),resultSetP.getString("respuesta"),
+				resultSetP.getString("op1"),resultSetP.getString("op2"),
+				resultSetP.getString("op3"),resultSetP.getString("op4"));
+
+				c.setPregunta(pregunta);
+
+                resultSet.close();
+                resultSetP.close();
+                statement.close();
+                statementP.close();
+                 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+			
+	 		return c;
+	 	} 
+	 	
 }

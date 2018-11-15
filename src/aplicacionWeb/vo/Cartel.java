@@ -10,7 +10,12 @@ public class Cartel {
 	//Constructor cartel vacío
 	public Cartel() {
 	}
-	
+	public Cartel(String title, String txt, String rt) {	
+		this.titulo = title;
+		this.texto = txt;
+		this.reto = rt;
+		this.pregunta = new Pregunta();
+	}
 	//Constructor cartel sin pregunta
 	public Cartel(String title, String txt, String rt, int id) {	//add ID
 		this.titulo = title;
